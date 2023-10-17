@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-//commentaire test
+//Commit à chaque ajout de fonctionnalité ou réparation de bug
 
 public class MainActivity extends AppCompatActivity {
 
