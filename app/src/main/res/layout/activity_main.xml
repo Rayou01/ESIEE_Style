@@ -1,18 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/Main_Page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="100dp"
+        android:text="@string/app_name"
+        android:textColor="@color/blue"
+        android:textSize="40sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="155dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:text="@string/connexion"
+        android:textSize="33sp"
+        android:textStyle="italic"
+        android:textColor="@color/blue"/>
+
+    <EditText
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:autofillHints="username"
+        android:background="@drawable/edit_round"
+        android:hint="@string/utilisateur"
+        android:inputType="textPersonName"
+        android:minHeight="50dp"
+        android:paddingStart="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+    <EditText
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="30dp"
+        android:autofillHints="password"
+        android:background="@drawable/edit_round"
+        android:hint="@string/mot_de_passe"
+        android:inputType="textPassword"
+        android:minHeight="50dp"
+        android:paddingStart="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/utilisateur_mdp_forgot"
+        android:textColor="@color/blue"
+        android:textSize="11sp"
+        style="?android:attr/buttonBarButtonStyle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        tools:context=".MainActivity">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginEnd="35dp"
+            android:text="@string/connexion"
+            android:textSize="15sp"
+            tools:ignore="ButtonStyle,DuplicateSpeakableTextCheck" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="@string/inscription"
+            android:textSize="15sp"
+            tools:ignore="ButtonStyle" />
+
+    </LinearLayout>
+
+</LinearLayout>
