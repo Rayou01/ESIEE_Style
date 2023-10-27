@@ -1,99 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:gravity="center_horizontal"
-tools:context=".MainActivity">
-
-<TextView
-    android:id="@+id/Main_Page"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="100dp"
-    android:text="@string/app_name"
-    android:textColor="@color/blue"
-    android:textSize="80sp" />
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="70dp"
-    android:text="@string/connexion"
-    android:textSize="60sp"
-    android:textStyle="italic"
-    android:textColor="@color/blue"/>
-
-<EditText
-    android:id="@+id/user_name"
-    android:layout_width="400dp"
-    android:layout_height="60dp"
-    android:layout_marginTop="40dp"
-    android:autofillHints="username"
-    android:background="@drawable/edit_round"
-    android:hint="@string/utilisateur"
-    android:inputType="textPersonName"
-    android:minHeight="50dp"
-    android:paddingStart="10dp"
-    android:paddingTop="2dp"
-    android:paddingBottom="2dp"
-    android:textColor="@color/grey"
-    android:textSize="35sp"
-    tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-<EditText
-    android:id="@+id/user_password"
-    android:layout_width="400dp"
-    android:layout_height="60dp"
-    android:layout_marginTop="40dp"
-    android:autofillHints="password"
-    android:background="@drawable/edit_round"
-    android:hint="@string/mot_de_passe"
-    android:inputType="textPassword"
-    android:minHeight="50dp"
-    android:paddingStart="10dp"
-    android:paddingTop="2dp"
-    android:paddingBottom="2dp"
-    android:textColor="@color/grey"
-    android:textSize="35sp"
-    tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-<Button
-    android:id="@+id/forgot_id"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:text="@string/utilisateur_mdp_forgot"
-    android:textColor="@color/blue"
-    android:textSize="17sp"
-    style="?android:attr/buttonBarButtonStyle" />
-
-<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="center"
-    android:layout_marginTop="10dp"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".ConnectionFragment">
 
-    <Button
-        android:id="@+id/connection_button"
+    <TextView
+        android:id="@+id/Main_Page"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:layout_marginEnd="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/app_name"
+        android:textColor="@color/blue"
+        android:textSize="80sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:text="@string/connexion"
-        android:textSize="30sp"
-        tools:ignore="ButtonStyle,DuplicateSpeakableTextCheck" />
+        android:textColor="@color/blue"
+        android:textSize="60sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/user_name"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:autofillHints="username"
+        android:background="@drawable/edit_round"
+        android:hint="@string/utilisateur"
+        android:inputType="textPersonName"
+        android:minHeight="50dp"
+        android:paddingStart="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:textColor="@color/grey"
+        android:textSize="35sp"
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/user_password"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:autofillHints="password"
+        android:background="@drawable/edit_round"
+        android:hint="@string/mot_de_passe"
+        android:inputType="textPassword"
+        android:minHeight="50dp"
+        android:paddingStart="10dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:textColor="@color/grey"
+        android:textSize="35sp"
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
 
     <Button
-        android:id="@+id/register_button"
+        android:id="@+id/forgot_id"
+        style="?android:attr/buttonBarButtonStyle"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:text="@string/inscription"
-        android:textSize="30sp"
-        tools:ignore="ButtonStyle" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/utilisateur_mdp_forgot"
+        android:textColor="@color/blue"
+        android:textSize="17sp" />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:context=".MainActivity">
+
+        <Button
+            android:id="@+id/connection_button"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginEnd="30dp"
+            android:text="@string/connexion"
+            android:textSize="30sp"
+            tools:ignore="ButtonStyle,DuplicateSpeakableTextCheck" />
+
+        <Button
+            android:id="@+id/register_button"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:text="@string/inscription"
+            android:textSize="30sp"
+            tools:ignore="ButtonStyle" />
+
+    </LinearLayout>
 
 </LinearLayout>

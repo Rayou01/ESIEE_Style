@@ -7,4 +7,10 @@
     <string name="utilisateur_mdp_forgot"><u>Utilisateur ou mot de passe oublié</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nom">Nom</string>
+    <string name="prenom">Prénom</string>
+    <string name="mail_esiee">Mail ESIEE</string>
+    <string name="telephone">Téléphone</string>
+    <string name="entrer">Entrer</string>
+    <string name="retour">Retour</string>
 </resources>

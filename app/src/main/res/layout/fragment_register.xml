@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".RegisterFragment">
+
+    <TextView
+        android:id="@+id/Main_Page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="@string/app_name"
+        android:textColor="@color/blue"
+        android:textSize="80sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/inscription"
+        android:textColor="@color/blue"
+        android:textSize="60sp"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/register_name"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:autofillHints="name"
+        android:background="@drawable/edit_round"
+        android:hint="@string/nom"
+        android:inputType="textPersonName"
+        android:minHeight="40dp"
+        android:paddingStart="10dp"
+        android:textColor="@color/grey"
+        android:textSize="35sp"
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/register_surname"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:autofillHints="name"
+        android:background="@drawable/edit_round"
+        android:hint="@string/prenom"
+        android:inputType="textPersonName"
+        android:minHeight="40dp"
+        android:paddingStart="10dp"
+        android:textColor="@color/grey"
+        android:textSize="35sp"
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/mail_esiee"
+            android:layout_width="230dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="20dp"
+            android:autofillHints="emailAddress"
+            android:background="@drawable/edit_round"
+            android:hint="@string/mail_esiee"
+            android:inputType="textEmailAddress"
+            android:minHeight="40dp"
+            android:paddingStart="10dp"
+            android:textColor="@color/grey"
+            android:textSize="30sp"
+            tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/phone_number"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:autofillHints="phone"
+            android:background="@drawable/edit_round"
+            android:hint="@string/telephone"
+            android:inputType="phone"
+            android:minHeight="40dp"
+            android:paddingStart="10dp"
+            android:textColor="@color/grey"
+            android:textSize="28sp"
+            tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="400dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:autofillHints="password"
+        android:background="@drawable/edit_round"
+        android:hint="@string/mot_de_passe"
+        android:inputType="textPassword"
+        android:minHeight="40dp"
+        android:paddingStart="10dp"
+        android:textColor="@color/grey"
+        android:textSize="35sp"
+        tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+    <Button
+        android:id="@+id/validate_registration_button"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:minHeight="50dp"
+        android:layout_marginTop="30dp"
+        android:textSize="30sp"
+        android:text="@string/entrer" />
+
+    <Button
+        android:id="@+id/register_to_connection_page_button"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:minHeight="50dp"
+        android:layout_marginTop="50dp"
+        android:textSize="30sp"
+        android:text="@string/retour"
+        tools:ignore="VisualLintBounds" />
+
+</LinearLayout>

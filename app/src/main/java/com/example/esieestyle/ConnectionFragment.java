@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.util.LogPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +49,7 @@ public class ConnectionFragment extends Fragment {
         binding.userName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                binding.connectionButton.setEnabled(false);
             }
 
             @Override
@@ -65,7 +67,7 @@ public class ConnectionFragment extends Fragment {
         binding.userPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                binding.connectionButton.setEnabled(false);
             }
 
             @Override
@@ -78,7 +80,7 @@ public class ConnectionFragment extends Fragment {
                 //We look if the user has enter a text for the user password EditText
                 is_Password_Text_Empty = editable.toString().isEmpty();
                 //Then, we tes if both of EditText has been modified and enable the button if it's the case
-                binding.connectionButton.setEnabled(!(is_Password_Text_Empty&&is_User_Text_Empty));
+                binding.connectionButton.setEnabled(!(is_Password_Text_Empty||is_User_Text_Empty));
             }
         });
 
