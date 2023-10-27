@@ -85,7 +85,7 @@ public class ConnectionFragment extends Fragment {
         });
 
         binding.connectionButton.setOnClickListener(view1 -> {
-            //Naviguer vers l'activité suivante
+            //Naviguer vers le fragment suivant
         });
     }
 }
