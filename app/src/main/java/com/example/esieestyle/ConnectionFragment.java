@@ -1,18 +1,17 @@
 package com.example.esieestyle;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.util.LogPrinter;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.esieestyle.databinding.FragmentConnectionBinding;
 
@@ -23,8 +22,7 @@ public class ConnectionFragment extends Fragment {
     public boolean is_User_Text_Empty, is_Password_Text_Empty;
 
     public static ConnectionFragment newInstance() {
-        ConnectionFragment fragment = new ConnectionFragment();
-        return fragment;
+        return new ConnectionFragment();
     }
 
     @Override
@@ -33,7 +31,7 @@ public class ConnectionFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentConnectionBinding.inflate(inflater, container, false);
@@ -84,8 +82,13 @@ public class ConnectionFragment extends Fragment {
             }
         });
 
-        binding.connectionButton.setOnClickListener(view1 -> {
+        binding.registerButton.setOnClickListener(view1 -> {
             //Naviguer vers le fragment suivant
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            RegisterFragment registerFragment = new RegisterFragment();
+            fragmentTransaction.replace(R.id.fragment_container_view_id, registerFragment);
+            fragmentTransaction.commit();
         });
     }
 }
