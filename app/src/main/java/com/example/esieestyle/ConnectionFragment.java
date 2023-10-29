@@ -19,7 +19,7 @@ public class ConnectionFragment extends Fragment {
 
     private FragmentConnectionBinding binding;
 
-    public boolean is_User_Text_Empty, is_Password_Text_Empty;
+    private boolean is_User_Text_Empty, is_Password_Text_Empty;
 
     public static ConnectionFragment newInstance() {
         return new ConnectionFragment();
@@ -44,10 +44,13 @@ public class ConnectionFragment extends Fragment {
         //When the UI is created, we disable the connection button until the user enter something
         binding.connectionButton.setEnabled(false);
 
+        is_User_Text_Empty = true;
+        is_Password_Text_Empty = true;
+
         binding.userName.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                binding.connectionButton.setEnabled(false);
+
             }
 
             @Override
@@ -59,13 +62,14 @@ public class ConnectionFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
                 //We look if the user has enter a text for the user name EditText
                 is_User_Text_Empty = editable.toString().isEmpty();
+                binding.connectionButton.setEnabled(!(is_Password_Text_Empty||is_User_Text_Empty));
             }
         });
 
         binding.userPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                binding.connectionButton.setEnabled(false);
+
             }
 
             @Override
@@ -77,10 +81,11 @@ public class ConnectionFragment extends Fragment {
             public void afterTextChanged(Editable editable) {
                 //We look if the user has enter a text for the user password EditText
                 is_Password_Text_Empty = editable.toString().isEmpty();
-                //Then, we tes if both of EditText has been modified and enable the button if it's the case
+                //Then, we test if both of EditText has been modified and enable the button if it's the case
                 binding.connectionButton.setEnabled(!(is_Password_Text_Empty||is_User_Text_Empty));
             }
         });
+
 
         binding.registerButton.setOnClickListener(view1 -> {
             //Naviguer vers le fragment suivant
