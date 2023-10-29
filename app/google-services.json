@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "912051707260",
+    "project_id": "esiee-style-vr",
+    "storage_bucket": "esiee-style-vr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912051707260:android:f9a3427200a4dbb66bd8f9",
+        "android_client_info": {
+          "package_name": "com.example.esieestyle"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB91I2kABQx8CcsGc750dosWm5JdRWfMkU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
