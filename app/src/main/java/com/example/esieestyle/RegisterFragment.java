@@ -14,8 +14,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.esieestyle.databinding.FragmentRegisterBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class RegisterFragment extends Fragment {
+
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     private FragmentRegisterBinding binding;
 
@@ -123,6 +129,7 @@ public class RegisterFragment extends Fragment {
                 is_Phone_Text_Empty = editable.toString().isEmpty();
                 binding.validateRegistrationButton.setEnabled(!(is_Surname_Text_Empty
                         || is_Name_Text_Empty || is_Email_Text_Empty || is_Phone_Text_Empty || is_Password_Text_Empty));
+
             }
         });
 
@@ -152,6 +159,17 @@ public class RegisterFragment extends Fragment {
             ConnectionFragment connectionFragment = new ConnectionFragment();
             fragmentTransaction.replace(R.id.fragment_container_view_id, connectionFragment);
             fragmentTransaction.commit();
+        });
+
+        binding.validateRegistrationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String email, password;
+                email = String.valueOf(binding.mailEsiee.getText());
+                password = String.valueOf(binding.registerPassword.getText());
+
+                firebaseAuth.createUserWithEmailAndPassword(email, password);
+            }
         });
     }
 }

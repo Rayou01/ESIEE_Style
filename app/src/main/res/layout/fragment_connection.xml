@@ -32,10 +32,10 @@
         android:layout_marginTop="40dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/user_name"
+            android:id="@+id/user_Mail"
             android:layout_width="400dp"
             android:layout_height="60dp"
-            android:hint="@string/utilisateur"
+            android:hint="@string/user_mail"
             android:inputType="textPersonName"
             android:autofillHints="username"
             android:background="@drawable/edit_round"
