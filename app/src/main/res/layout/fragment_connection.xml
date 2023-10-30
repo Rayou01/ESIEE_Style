@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".ConnectionFragment">
@@ -25,39 +26,51 @@
         android:textSize="60sp"
         android:textStyle="italic" />
 
-    <EditText
-        android:id="@+id/user_name"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        android:autofillHints="username"
-        android:background="@drawable/edit_round"
-        android:hint="@string/utilisateur"
-        android:inputType="textPersonName"
-        android:minHeight="50dp"
-        android:paddingStart="10dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:textColor="@color/grey"
-        android:textSize="35sp"
-        tools:ignore="RtlSymmetry,TextContrastCheck" />
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
 
-    <EditText
-        android:id="@+id/user_password"
-        android:layout_width="400dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="40dp"
-        android:autofillHints="password"
-        android:background="@drawable/edit_round"
-        android:hint="@string/mot_de_passe"
-        android:inputType="textPassword"
-        android:minHeight="50dp"
-        android:paddingStart="10dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:textColor="@color/grey"
-        android:textSize="35sp"
-        tools:ignore="RtlSymmetry,TextContrastCheck" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_Mail"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:hint="@string/user_mail"
+            android:inputType="textPersonName"
+            android:autofillHints="username"
+            android:background="@drawable/edit_round"
+            android:minHeight="50dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:textSize="35sp"
+            tools:ignore="RtlSymmetry" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:passwordToggleEnabled="true"
+        android:layout_marginTop="40dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/user_password"
+            android:layout_width="400dp"
+            android:layout_height="60dp"
+            android:hint="@string/mot_de_passe"
+            android:inputType="textPassword"
+            android:textSize="35sp"
+            android:autofillHints="password"
+            android:background="@drawable/edit_round"
+            android:minHeight="50dp"
+            android:paddingStart="10dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+
+            tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/forgot_id"
