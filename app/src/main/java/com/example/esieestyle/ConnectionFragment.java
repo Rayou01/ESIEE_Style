@@ -1,5 +1,6 @@
 package com.example.esieestyle;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -115,6 +116,14 @@ public class ConnectionFragment extends Fragment {
             password = String.valueOf(binding.userPassword.getText());
 
             firebaseAuth.signInWithEmailAndPassword(email, password);
+        });
+
+        binding.connectionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AnnonceActivity.class);
+                startActivity(intent);
+            }
         });
     }
 }

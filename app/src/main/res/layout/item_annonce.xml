@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    app:cardBackgroundColor="#FFFFE8">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/favorite_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/baseline_favorite"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/phone_button"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/favorite_button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/baseline_phone"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/product_price_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:layout_toStartOf="@+id/favorite_button"
+            android:layout_marginEnd="50dp"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/annonce_date_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date de l'annonce"
+            android:textSize="20sp"
+            android:textColor="@color/grey"
+            android:layout_toStartOf="@+id/phone_button"
+            android:layout_marginEnd="50dp"
+            android:layout_alignBaseline="@+id/phone_button" />
+
+        <TextView
+            android:id="@+id/product_name_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom du produit"
+            android:ellipsize="end"
+            android:textSize="30sp"
+            android:textColor="@color/black"
+            android:layout_toStartOf="@+id/product_price_TextView"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/seller_name_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Nom du vendeur"
+            android:ellipsize="end"
+            android:textSize="20sp"
+            android:textColor="@color/grey"
+            android:layout_below="@+id/product_name_TextView"
+            android:layout_toStartOf="@+id/annonce_date_TextView"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/product_state_TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Etat du produit"
+            android:textSize="20sp"
+            android:textColor="@color/grey"
+            android:layout_below="@+id/seller_name_TextView" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
