@@ -1,172 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
     tools:context=".RegisterFragment">
-
-    <TextView
-        android:id="@+id/Main_Page"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="@string/app_name"
-        android:textColor="@color/blue"
-        android:textSize="80sp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="@string/inscription"
-        android:textColor="@color/blue"
-        android:textSize="60sp"
-        android:textStyle="italic" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_name"
-            android:layout_width="400dp"
-            android:layout_height="50dp"
-            android:autofillHints="name"
-            android:background="@drawable/edit_round"
-            android:hint="@string/nom"
-            android:inputType="textPersonName"
-            android:minHeight="50dp"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:textSize="35sp" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_surname"
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:autofillHints="name"
-            android:background="@drawable/edit_round"
-            android:hint="@string/prenom"
-            android:inputType="textPersonName"
-            android:minHeight="50dp"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:textSize="35sp"
-            tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="70dp"
+            android:src="@drawable/logo_esieestyle"
+            android:contentDescription="@string/logo_esiee_style"/>
+
+        <TextView
+            android:id="@+id/Main_Page"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/blue"
+            android:textSize="80sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/inscription"
+            android:textColor="@color/blue"
+            android:textSize="60sp"
+            android:textStyle="italic" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/mail_esiee"
-                android:layout_width="230dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="20dp"
-                android:autofillHints="emailAddress"
+                android:id="@+id/register_name"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:autofillHints="name"
                 android:background="@drawable/edit_round"
-                android:hint="@string/mail_esiee"
-                android:inputType="textEmailAddress"
+                android:hint="@string/nom"
+                android:inputType="textPersonName"
                 android:minHeight="50dp"
                 android:paddingStart="10dp"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
-                android:textSize="25sp"
-                tools:ignore="RtlSymmetry,TextContrastCheck">
-
-            </com.google.android.material.textfield.TextInputEditText>
+                android:textSize="35sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/phone_number"
-                android:layout_width="150dp"
+                android:id="@+id/register_surname"
+                android:layout_width="400dp"
                 android:layout_height="60dp"
-                android:autofillHints="phone"
+                android:autofillHints="name"
                 android:background="@drawable/edit_round"
-                android:hint="@string/telephone"
-                android:inputType="phone"
+                android:hint="@string/prenom"
+                android:inputType="textPersonName"
                 android:minHeight="50dp"
                 android:paddingStart="10dp"
-                android:textSize="20sp"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
-                tools:ignore="RtlSymmetry,TextContrastCheck">
-
-            </com.google.android.material.textfield.TextInputEditText>
+                android:textSize="35sp"
+                tools:ignore="RtlSymmetry,TextContrastCheck" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mail_esiee"
+                    android:layout_width="230dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="20dp"
+                    android:autofillHints="emailAddress"
+                    android:background="@drawable/edit_round"
+                    android:hint="@string/mail_esiee"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="50dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textSize="25sp"
+                    tools:ignore="RtlSymmetry,TextContrastCheck">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone_number"
+                    android:layout_width="150dp"
+                    android:layout_height="60dp"
+                    android:autofillHints="phone"
+                    android:background="@drawable/edit_round"
+                    android:hint="@string/telephone"
+                    android:inputType="phone"
+                    android:minHeight="50dp"
+                    android:paddingStart="10dp"
+                    android:textSize="20sp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    tools:ignore="RtlSymmetry,TextContrastCheck">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
+            android:layout_marginTop="40dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/register_password"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:hint="@string/mot_de_passe"
+                android:inputType="textPassword"
+                android:textSize="35sp"
+                android:autofillHints="password"
+                android:background="@drawable/edit_round"
+                android:minHeight="50dp"
+                android:paddingStart="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+
+                tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/validate_registration_button"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:minHeight="50dp"
+            android:layout_marginTop="40dp"
+            android:textSize="30sp"
+            android:text="@string/entrer"
+            tools:ignore="VisualLintBounds" />
+
+        <Button
+            android:id="@+id/register_to_connection_page_button"
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:minHeight="50dp"
+            android:layout_marginTop="70dp"
+            android:textSize="30sp"
+            android:text="@string/retour"
+            tools:ignore="VisualLintBounds" />
 
     </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        android:layout_marginTop="40dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/register_password"
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:hint="@string/mot_de_passe"
-            android:inputType="textPassword"
-            android:textSize="35sp"
-            android:autofillHints="password"
-            android:background="@drawable/edit_round"
-            android:minHeight="50dp"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
 
-            tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/validate_registration_button"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:minHeight="50dp"
-        android:layout_marginTop="40dp"
-        android:textSize="30sp"
-        android:text="@string/entrer"
-        tools:ignore="VisualLintBounds" />
-
-    <Button
-        android:id="@+id/register_to_connection_page_button"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:minHeight="50dp"
-        android:layout_marginTop="70dp"
-        android:textSize="30sp"
-        android:text="@string/retour"
-        tools:ignore="VisualLintBounds" />
-
-</LinearLayout>
+</FrameLayout>
