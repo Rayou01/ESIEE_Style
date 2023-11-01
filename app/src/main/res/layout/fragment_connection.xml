@@ -12,101 +12,101 @@
         android:id="@+id/Main_Page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="200dp"
         android:text="@string/app_name"
         android:textColor="@color/blue"
         android:textSize="80sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:text="@string/connexion"
-        android:textColor="@color/blue"
-        android:textSize="60sp"
-        android:textStyle="italic" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/user_Mail"
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:hint="@string/user_mail"
-            android:inputType="textPersonName"
-            android:autofillHints="username"
-            android:background="@drawable/edit_round"
-            android:minHeight="50dp"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-            android:textSize="35sp"
-            tools:ignore="RtlSymmetry" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
-        android:layout_marginTop="40dp">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/user_password"
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:hint="@string/mot_de_passe"
-            android:inputType="textPassword"
-            android:textSize="35sp"
-            android:autofillHints="password"
-            android:background="@drawable/edit_round"
-            android:minHeight="50dp"
-            android:paddingStart="10dp"
-            android:paddingTop="2dp"
-            android:paddingBottom="2dp"
-
-            tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Button
-        android:id="@+id/forgot_id"
-        style="?android:attr/buttonBarButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="@string/utilisateur_mdp_forgot"
-        android:textColor="@color/blue"
-        android:textSize="17sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        tools:context=".MainActivity">
-
-        <Button
-            android:id="@+id/connection_button"
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_marginEnd="30dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
             android:text="@string/connexion"
-            android:textSize="30sp"
-            tools:ignore="ButtonStyle,DuplicateSpeakableTextCheck" />
+            android:textColor="@color/blue"
+            android:textSize="60sp"
+            android:textStyle="italic" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/user_Mail"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:autofillHints="username"
+                android:background="@drawable/edit_round"
+                android:hint="@string/user_mail"
+                android:inputType="textPersonName"
+                android:minHeight="50dp"
+                android:paddingStart="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textSize="35sp"
+                tools:ignore="RtlSymmetry" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/user_password"
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:autofillHints="password"
+                android:background="@drawable/edit_round"
+                android:hint="@string/mot_de_passe"
+                android:inputType="textPassword"
+                android:minHeight="50dp"
+                android:paddingStart="10dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textSize="35sp"
+
+                tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/register_button"
+            android:id="@+id/forgot_id"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:text="@string/inscription"
-            android:textSize="30sp"
-            tools:ignore="ButtonStyle" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/utilisateur_mdp_forgot"
+            android:textColor="@color/blue"
+            android:textSize="17sp" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            tools:context=".ConnectionFragment">
+
+            <Button
+                android:id="@+id/connection_button"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/connexion"
+                android:textSize="30sp"
+                tools:ignore="ButtonStyle,DuplicateSpeakableTextCheck" />
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:text="@string/inscription"
+                android:textSize="30sp"
+                tools:ignore="ButtonStyle" />
+
+        </LinearLayout>
 
 </LinearLayout>
