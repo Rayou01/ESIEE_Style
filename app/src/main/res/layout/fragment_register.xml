@@ -8,32 +8,47 @@
     android:orientation="vertical"
     tools:context=".RegisterFragment">
 
-    <TextView
-        android:id="@+id/Main_Page"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="181dp"
+        android:src="@drawable/logo_esiee_style_sbg" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="@string/app_name"
-        android:textColor="@color/blue"
-        android:textSize="80sp" />
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/blue_background"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:text="@string/inscription"
-        android:textColor="@color/blue"
-        android:textSize="60sp"
-        android:textStyle="italic" />
+        android:textColor="@color/blue_text_1"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/register_name"
-            android:layout_width="400dp"
+            android:layout_width="480dp"
             android:layout_height="60dp"
             android:autofillHints="name"
             android:background="@drawable/edit_round"
@@ -51,11 +66,13 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/register_surname"
-            android:layout_width="400dp"
+            android:layout_width="480dp"
             android:layout_height="60dp"
             android:autofillHints="name"
             android:background="@drawable/edit_round"
@@ -71,9 +88,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:layout_gravity="center"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -107,7 +125,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/phone_number"
-                android:layout_width="150dp"
+                android:layout_width="230dp"
                 android:layout_height="60dp"
                 android:autofillHints="phone"
                 android:background="@drawable/edit_round"
@@ -115,9 +133,9 @@
                 android:inputType="phone"
                 android:minHeight="50dp"
                 android:paddingStart="10dp"
-                android:textSize="20sp"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
+                android:textSize="20sp"
                 tools:ignore="RtlSymmetry,TextContrastCheck">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -130,11 +148,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"
+        android:gravity="center">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/register_password"
-            android:layout_width="400dp"
+            android:layout_width="480dp"
             android:layout_height="60dp"
             android:hint="@string/mot_de_passe"
             android:inputType="textPassword"
@@ -154,19 +174,27 @@
         android:id="@+id/validate_registration_button"
         android:layout_width="300dp"
         android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:minHeight="50dp"
         android:layout_marginTop="30dp"
+        android:background="@drawable/edit_round_button"
         android:textSize="30sp"
         android:text="@string/entrer"
+        android:textColor="@color/blue_text_1"
         tools:ignore="VisualLintBounds" />
 
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
     <Button
         android:id="@+id/register_to_connection_page_button"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:minHeight="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edit_round_button"
         android:textSize="30sp"
+        android:textColor="@color/blue_text_1"
         android:text="@string/retour"
         tools:ignore="VisualLintBounds" />
 
