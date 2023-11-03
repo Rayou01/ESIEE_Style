@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/done_tools"
-        android:icon="@drawable/baseline_done"
-        android:title="Search"
-        app:showAsAction="ifRoom" />
-
+        android:id="@+id/home_menu"
+        android:icon="@drawable/baseline_home"
+        android:title="@string/menu" />
+    <item
+        android:id="@+id/favorite_menu"
+        android:icon="@drawable/baseline_favorite"
+        android:title="@string/favoris" />
+    <item
+        android:id="@+id/add_annonce_menu"
+        android:icon="@drawable/baseline_add_box"
+        android:title="@string/ajouter" />
+    <item
+        android:id="@+id/basket_menu"
+        android:icon="@drawable/baseline_shopping_cart"
+        android:title="@string/panier" />
+    <item
+        android:id="@+id/user_avatar_menu"
+        android:icon="@drawable/baseline_person"
+        android:title="@string/mon_compte" />
 </menu>

@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,11 +19,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.esieestyle.databinding.FragmentConnectionBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
 
 public class ConnectionFragment extends Fragment {
 
@@ -57,6 +53,8 @@ public class ConnectionFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //When the UI is created, we disable the connection button until the user enter something
         binding.connectionButton.setEnabled(false);
+        firebaseAuth.signOut();
+        Toast.makeText(getContext(), "Veuillez vous connecter", Toast.LENGTH_LONG).show();
 
         is_User_Text_Empty = true;
         is_Password_Text_Empty = true;
@@ -115,15 +113,29 @@ public class ConnectionFragment extends Fragment {
             email = String.valueOf(binding.userMail.getText());
             password = String.valueOf(binding.userPassword.getText());
 
-            firebaseAuth.signInWithEmailAndPassword(email, password);
-        });
-
-        binding.connectionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), AnnonceActivity.class);
-                startActivity(intent);
+            if(TextUtils.isEmpty(email)) {
+                Toast.makeText(getContext(), "Entrer un mail", Toast.LENGTH_SHORT).show();
+                return;
             }
+            if(TextUtils.isEmpty(password)) {
+                Toast.makeText(getContext(), "Entrer un mot de passe", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()) {
+                            Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getActivity(), AnnonceActivity.class);
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(getContext(), "Echec de connexion", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            });
         });
     }
 }
