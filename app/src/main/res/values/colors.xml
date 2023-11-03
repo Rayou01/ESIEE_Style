@@ -4,10 +4,13 @@
     <color name="white">#FFFFFF</color>
     <color name="green">#7ED957</color>
     <color name="grey">#5A5A5A</color>
-    <color name="light_grey">#E9E8E9</color>
+    <color name="grey_background">#E9E8E9</color>
     <color name="blue">#0000FF</color>
-    <color name="light_blue">#38B6FF</color>
     <color name="purple">#8C52FF</color>
+    <color name="blue_text_1">#5271FF</color>
+    <color name="blue_text_2">#9AA8EB</color>
+    <color name="blue_instance">#38B6FF</color>
+    <color name="blue_background">#C0D5E3</color>
     <color name="login_register_background">#C0D5E3</color>
 
     <color name="colorPrimary">#4285F4</color>

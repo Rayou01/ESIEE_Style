@@ -1,127 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".ConnectionFragment">
 
-    <LinearLayout
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:src="@drawable/logo_esiee_style_sbg" />
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="70dp"
-            android:src="@drawable/logo_esieestyle"
-            android:contentDescription="@string/logo_esiee_style"/>
-
-        <TextView
-            android:id="@+id/Main_Page"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textColor="@color/blue"
-            android:textSize="80sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="@string/connexion"
-            android:textColor="@color/blue"
-            android:textSize="60sp"
-            android:textStyle="italic" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/user_Mail"
-                android:layout_width="400dp"
-                android:layout_height="60dp"
-                android:autofillHints="username"
-                android:background="@drawable/edit_round"
-                android:hint="@string/user_mail"
-                android:inputType="textPersonName"
-                android:minHeight="50dp"
-                android:paddingStart="10dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:textSize="35sp"
-                tools:ignore="RtlSymmetry" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/user_password"
-                android:layout_width="400dp"
-                android:layout_height="60dp"
-                android:autofillHints="password"
-                android:background="@drawable/edit_round"
-                android:hint="@string/mot_de_passe"
-                android:inputType="textPassword"
-                android:minHeight="50dp"
-                android:paddingStart="10dp"
-                android:paddingTop="2dp"
-                android:paddingBottom="2dp"
-                android:textSize="35sp"
-
-                tools:ignore="RtlSymmetry,TextContrastCheck" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/forgot_id"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/utilisateur_mdp_forgot"
-            android:textColor="@color/blue"
-            android:textSize="17sp" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/blue_background"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            tools:context=".ConnectionFragment">
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-            <Button
-                android:id="@+id/connection_button"
-                android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:layout_marginEnd="30dp"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="@string/connexion"
-                android:textSize="30sp"
-                tools:ignore="ButtonStyle,DuplicateSpeakableTextCheck" />
+                android:textAlignment="center"
+                android:textColor="@color/blue_text_1"
+                android:textSize="60sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="40dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_Mail"
+                    android:layout_width="480dp"
+                    android:layout_height="60dp"
+                    android:autofillHints="username"
+                    android:background="@drawable/edit_round"
+                    android:hint="@string/user_mail"
+                    android:inputType="textPersonName"
+                    android:minHeight="50dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textColor="@color/blue_text_2"
+                    android:textSize="35sp"
+                    tools:ignore="RtlSymmetry" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_password"
+                    android:layout_width="480dp"
+                    android:layout_height="60dp"
+                    android:autofillHints="password"
+                    android:background="@drawable/edit_round"
+                    android:hint="@string/mot_de_passe"
+                    android:inputType="textPassword"
+                    android:minHeight="50dp"
+                    android:paddingStart="10dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:textSize="35sp"
+
+                    tools:ignore="RtlSymmetry,TextContrastCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/register_button"
+                android:id="@+id/forgot_id"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="70dp"
-                android:text="@string/inscription"
-                android:textSize="30sp"
-                tools:ignore="ButtonStyle" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/utilisateur_mdp_forgot"
+                android:textColor="@color/blue_text_1"
+                android:textSize="17sp" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                tools:context=".MainActivity">
+
+                <Button
+                    android:id="@+id/connection_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/edit_round_button"
+                    android:text="@string/connexion"
+                    android:textColor="@color/blue_text_1"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/register_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="70dp"
+                    android:background="@drawable/edit_round_button"
+                    android:text="@string/inscription"
+                    android:textColor="@color/blue_text_1"
+                    android:textSize="30sp" />
+
+            </LinearLayout>
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
-
-
-</FrameLayout>
+</LinearLayout>
