@@ -104,7 +104,7 @@ public class ConnectionFragment extends Fragment {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             RegisterFragment registerFragment = new RegisterFragment();
-            fragmentTransaction.replace(R.id.fragment_container_view_id, registerFragment);
+            fragmentTransaction.replace(R.id.fragment_container_view_id_Main, registerFragment);
             fragmentTransaction.commit();
         });
 

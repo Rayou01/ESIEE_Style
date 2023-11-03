@@ -52,6 +52,7 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.validateRegistrationButton.setEnabled(false);
+        firebaseAuth.signOut();
 
         is_Name_Text_Empty = true;
         is_Surname_Text_Empty = true;
@@ -160,7 +161,7 @@ public class RegisterFragment extends Fragment {
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             ConnectionFragment connectionFragment = new ConnectionFragment();
-            fragmentTransaction.replace(R.id.fragment_container_view_id, connectionFragment);
+            fragmentTransaction.replace(R.id.fragment_container_view_id_Main, connectionFragment);
             fragmentTransaction.commit();
         });
 

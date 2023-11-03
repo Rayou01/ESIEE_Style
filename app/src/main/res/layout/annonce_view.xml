@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="#D1FAFF"
+    android:layout_margin="10dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food_1"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/product_name_TextView"
+            style="@style/Base.Theme.ESIEEStyle.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/product_image"
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="-2dp"
+            android:layout_toEndOf="@+id/product_image"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="Nom du produit" />
+
+        <TextView
+            android:id="@+id/seller_name_TextView"
+            style="@style/Base.Theme.ESIEEStyle.Subheader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/product_name_TextView"
+            android:layout_below="@+id/product_name_TextView"
+            android:layout_marginBottom="15dp"
+            android:ellipsize="end"
+            android:text="Nom du vendeur" />
+
+        <TextView
+            android:id="@+id/product_state_TextView"
+            style="@style/Base.Theme.ESIEEStyle.Caption"
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/seller_name_TextView"
+            android:layout_alignStart="@+id/seller_name_TextView"
+            android:gravity="center_vertical"
+            android:textColor="@color/greyDisabled"
+            tools:text="Etat du produit" />
+
+        <TextView
+            android:id="@+id/annonce_date_TextView"
+            style="@style/Base.Theme.ESIEEStyle.Subheader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/phone_button"
+            android:layout_marginStart="150dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="12dp"
+            android:layout_toStartOf="@id/phone_button"
+            android:layout_toEndOf="@+id/product_state_TextView"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/greySecondary"
+            tools:text="Date de publication" />
+
+        <TextView
+            android:id="@+id/product_price_TextView"
+            style="@style/Base.Theme.ESIEEStyle.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/product_image"
+            android:layout_toStartOf="@+id/favorite_button"
+            android:paddingEnd="50dp"
+            android:text="Prix du produit"/>
+
+        <Button
+            android:id="@+id/favorite_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/baseline_favorite"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/phone_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/favorite_button"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/baseline_phone"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConnectionFragment">
+    tools:context=".fragment.FavorisFragment">
 
-    <androidx.fragment.app.FragmentContainerView
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.esieestyle.ConnectionFragment"
-        android:id="@+id/fragment_container_view_id_Main" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>
