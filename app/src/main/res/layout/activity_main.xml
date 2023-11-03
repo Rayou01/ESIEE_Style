@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.example.esieestyle.ConnectionFragment"
-        android:id="@+id/fragment_container_view_id"
+        android:id="@+id/fragment_container_view_id_Main"
         android:background="@drawable/fond_page_connexion"
         />
 
