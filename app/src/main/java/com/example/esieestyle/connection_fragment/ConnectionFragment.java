@@ -1,4 +1,4 @@
-package com.example.esieestyle;
+package com.example.esieestyle.connection_fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.esieestyle.AnnonceActivity;
+import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentConnectionBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

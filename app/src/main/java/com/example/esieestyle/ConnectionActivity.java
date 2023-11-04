@@ -10,7 +10,7 @@ https://openclassrooms.com/fr/courses/8150246-developpez-votre-premiere-applicat
 
 //Commit à chaque ajout de fonctionnalité ou réparation de bug
 
-public class MainActivity extends AppCompatActivity {
+public class ConnectionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

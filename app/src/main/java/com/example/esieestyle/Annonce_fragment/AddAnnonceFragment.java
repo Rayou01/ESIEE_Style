@@ -1,4 +1,4 @@
-package com.example.esieestyle.fragment;
+package com.example.esieestyle.Annonce_fragment;
 
 import android.os.Bundle;
 
@@ -10,14 +10,14 @@ import android.view.ViewGroup;
 
 import com.example.esieestyle.R;
 
-public class FavorisFragment extends Fragment {
+public class AddAnnonceFragment extends Fragment {
 
-    public FavorisFragment() {
+    public AddAnnonceFragment() {
         // Required empty public constructor
     }
 
-    public static FavorisFragment newInstance() {
-        FavorisFragment fragment = new FavorisFragment();
+    public static AddAnnonceFragment newInstance() {
+        AddAnnonceFragment fragment = new AddAnnonceFragment();
         return fragment;
     }
 
@@ -30,6 +30,6 @@ public class FavorisFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favoris, container, false);
+        return inflater.inflate(R.layout.fragment_add_annonce, container, false);
     }
 }

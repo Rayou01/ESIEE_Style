@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".ConnectionFragment">
+    tools:context=".connection_fragment.ConnectionFragment">
 
     <ImageView
         android:id="@+id/imageView"
@@ -108,7 +108,7 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                tools:context=".MainActivity">
+                tools:context=".ConnectionActivity">
 
                 <Button
                     android:id="@+id/connection_button"

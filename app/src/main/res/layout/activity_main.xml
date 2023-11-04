@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConnectionFragment">
+    tools:context=".connection_fragment.ConnectionFragment">
 
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.esieestyle.ConnectionFragment"
+        android:name="com.example.esieestyle.connection_fragment.ConnectionFragment"
         android:id="@+id/fragment_container_view_id_Main"
         android:background="@drawable/fond_page_connexion"
         />
