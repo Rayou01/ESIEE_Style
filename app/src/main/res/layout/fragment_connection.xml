@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".connection_fragment.ConnectionFragment">
@@ -79,6 +79,7 @@
                     android:autofillHints="password"
                     android:background="@drawable/edit_round"
                     android:hint="@string/mot_de_passe"
+                    android:textColor="@color/blue_text_2"
                     android:inputType="textPassword"
                     android:minHeight="50dp"
                     android:paddingStart="10dp"

@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,7 +55,7 @@ public class ConnectionFragment extends Fragment {
         //When the UI is created, we disable the connection button until the user enter something
         binding.connectionButton.setEnabled(false);
         firebaseAuth.signOut();
-        Toast.makeText(getContext(), "Veuillez vous connecter", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(), "Veuillez vous connecter", Toast.LENGTH_LONG).show();
 
         is_User_Text_Empty = true;
         is_Password_Text_Empty = true;
@@ -116,11 +115,11 @@ public class ConnectionFragment extends Fragment {
             password = String.valueOf(binding.userPassword.getText());
 
             if(TextUtils.isEmpty(email)) {
-                Toast.makeText(getContext(), "Entrer un mail", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Entrer un mail", Toast.LENGTH_SHORT).show();
                 return;
             }
             if(TextUtils.isEmpty(password)) {
-                Toast.makeText(getContext(), "Entrer un mot de passe", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getContext(), "Entrer un mot de passe", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -129,12 +128,13 @@ public class ConnectionFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()) {
-                            Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
+                            //Ne pas mettre de Toast dans des thread
+                            //Toast.makeText(getContext(), "Connexion réussie", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getActivity(), AnnonceActivity.class);
                             startActivity(intent);
                         }
                         else {
-                            Toast.makeText(getContext(), "Echec de connexion", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(), "Echec de connexion", Toast.LENGTH_SHORT).show();
                         }
                     }
             });

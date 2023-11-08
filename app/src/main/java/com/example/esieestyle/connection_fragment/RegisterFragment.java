@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -175,11 +174,11 @@ public class RegisterFragment extends Fragment {
                 password = String.valueOf(binding.registerPassword.getText());
 
                 if(TextUtils.isEmpty(email)){
-                    Toast.makeText(getContext(), "Entrer un mail", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Entrer un mail", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(TextUtils.isEmpty(password)) {
-                    Toast.makeText(getContext(), "Entrer un mot de passe", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), "Entrer un mot de passe", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -187,11 +186,11 @@ public class RegisterFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(getContext(), "Compte créé", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getContext(), "Compte créé", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getActivity(), AnnonceActivity.class);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(getContext(), "Echec de la création du compte", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getContext(), "Echec de la création du compte", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

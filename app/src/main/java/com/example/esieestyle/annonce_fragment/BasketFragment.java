@@ -1,23 +1,24 @@
-package com.example.esieestyle.Annonce_fragment;
+package com.example.esieestyle.annonce_fragment;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.esieestyle.R;
+import androidx.fragment.app.Fragment;
 
-public class FavorisFragment extends Fragment {
+import com.example.esieestyle.databinding.FragmentBasketBinding;
 
-    public FavorisFragment() {
+public class BasketFragment extends Fragment {
+
+    private FragmentBasketBinding binding;
+
+    public BasketFragment() {
         // Required empty public constructor
     }
 
-    public static FavorisFragment newInstance() {
-        FavorisFragment fragment = new FavorisFragment();
+    public static BasketFragment newInstance() {
+        BasketFragment fragment = new BasketFragment();
         return fragment;
     }
 
@@ -30,6 +31,7 @@ public class FavorisFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favoris, container, false);
+        binding = FragmentBasketBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 }
