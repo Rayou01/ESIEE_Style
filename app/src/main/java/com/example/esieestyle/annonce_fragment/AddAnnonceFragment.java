@@ -5,9 +5,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentAddAnnonceBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class AddAnnonceFragment extends Fragment {
 

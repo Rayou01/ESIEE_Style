@@ -7,8 +7,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentFavorisBinding;
 
 public class FavorisFragment extends Fragment {
@@ -30,6 +32,10 @@ public class FavorisFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_favoris, container, false);
+        Toolbar toolbar = view.findViewById(R.id.favorite_Toolbar);
+        //toolbar.inflateMenu(R.menu.menu_fragment);
 
         // Inflate the layout for this fragment
         binding = FragmentFavorisBinding.inflate(inflater, container, false);

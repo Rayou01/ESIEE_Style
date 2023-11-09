@@ -4,6 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:id="@+id/favorite_Toolbar"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark" >
+    android:background="@color/blue_text_1" >
 
 </androidx.appcompat.widget.Toolbar>

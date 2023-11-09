@@ -16,8 +16,5 @@
             android:layout_height="match_parent" />
         
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
 
