@@ -1,15 +1,234 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".annonce_fragment.AddAnnonceFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <Button
+        android:id="@+id/close_page"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/baseline_close"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"/>
+
+    <Button
+        android:id="@+id/new_done_annonce"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/baseline_done"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp"/>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_below="@+id/close_page"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/title_annonce_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:text="@string/titre_annonce"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/title_annonce_editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/title_annonce_textView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="400dp"
+                android:layout_height="60dp"
+                android:autofillHints="name"
+                android:background="@drawable/edit_round"
+                android:hint="@string/titre_annonce"
+                android:layout_marginEnd="110dp"
+                android:ellipsize="end"
+                android:inputType="text"
+                android:minHeight="50dp"
+                android:paddingStart="15dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                tools:ignore="RtlSymmetry" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/categorie_objet_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/categorie_objet"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_below="@id/title_annonce_editText"
+            android:layout_marginTop="25dp"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:id="@+id/categorie_objet_spinner"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/categorie_objet_textView"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentStart="true"/>
+
+        <TextView
+            android:id="@+id/photo_objet_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/photo_objet"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:layout_below="@id/categorie_objet_spinner"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp"/>
+
+        <ImageView
+            android:id="@+id/photo_objet_imageView"
+            android:layout_width="170dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/photo_objet_textView"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/food_1"
+            android:contentDescription="@string/photo_objet" />
+
+        <TextView
+            android:id="@+id/prix_objet_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/photo_objet_textView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="100dp"
+            android:text="@string/prix_objet"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/prix_objet_inputText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/prix_objet_textView"
+            android:layout_marginTop="8dp"
+            android:layout_alignStart="@id/prix_objet_textView"
+            android:layout_alignParentEnd="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="200dp"
+                android:layout_height="60dp"
+                android:autofillHints="name"
+                android:background="@drawable/edit_round"
+                android:hint="@string/prix_objet"
+                android:inputType="numberDecimal"
+                android:minHeight="50dp"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+                tools:ignore="RtlSymmetry" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/etat_objet_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="@string/etat_objet"
+            android:layout_below="@id/prix_objet_inputText"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@id/prix_objet_textView"
+            android:layout_marginTop="25dp"/>
+
+        <Spinner
+            android:id="@+id/etat_objet_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@id/etat_objet_textView"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignStart="@id/etat_objet_textView"/>
+
+        <TextView
+            android:id="@+id/informations_contact_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:text="@string/informations_contact"
+            android:layout_below="@id/photo_objet_imageView"
+            android:layout_marginTop="25dp"
+            android:layout_alignParentStart="true"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/informations_contact_inputText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/informations_contact_textView"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentStart="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:ellipsize="end"
+                android:textSize="25sp"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:background="@drawable/edit_round"
+                android:hint="Telephone, mail ESIEE, informations supplémentaires vous concernant"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/description_annonce_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/informations_contact_inputText"
+            android:layout_marginTop="25dp"
+            android:layout_alignParentStart="true"
+            android:text="@string/description_annonce"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/description_annonce_inputText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description_annonce_textView"
+            android:layout_marginTop="8dp"
+            android:layout_alignParentStart="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:ellipsize="end"
+                android:textSize="25sp"
+                android:textColor="@color/black"
+                android:inputType="text"
+                android:background="@drawable/edit_round"
+                android:hint="Description de l'annonce"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

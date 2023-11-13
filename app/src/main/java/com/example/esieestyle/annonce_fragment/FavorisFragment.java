@@ -2,6 +2,8 @@ package com.example.esieestyle.annonce_fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -27,16 +29,16 @@ public class FavorisFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) { super.onCreate(savedInstanceState);}
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.top_Toolbar);
+        toolbar.setTitle("Favoris");
+        toolbar.setLogo(R.drawable.baseline_favorite);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_favoris, container, false);
-        Toolbar toolbar = view.findViewById(R.id.favorite_Toolbar);
-        //toolbar.inflateMenu(R.menu.menu_fragment);
-
         // Inflate the layout for this fragment
         binding = FragmentFavorisBinding.inflate(inflater, container, false);
         return binding.getRoot();

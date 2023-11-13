@@ -5,6 +5,7 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -23,6 +24,10 @@ public class AnnonceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annonce);
+
+        //Récupère la Toolbar et l'active sur l'activité
+        Toolbar toolbar = findViewById(R.id.top_Toolbar);
+        setSupportActionBar(toolbar);
 
         //Permet d'activer la toolbar
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);

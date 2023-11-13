@@ -5,7 +5,6 @@
     <string name="mot_de_passe">Mot de passe</string>
     <string name="inscription">S\'inscrire</string>
     <string name="utilisateur_mdp_forgot"><u>Utilisateur ou mot de passe oublié</u></string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nom">Nom</string>
     <string name="prenom">Prénom</string>
@@ -19,4 +18,38 @@
     <string name="favoris">Favoris</string>
     <string name="menu">Menu</string>
     <string name="logo_esiee_style">logo ESIEE Style</string>
+    <string name="titre_annonce">Titre de l\'annonce</string>
+    <string name="categorie_objet">Catégorie de l\'objet</string>
+    <string name="photo_objet">Photo de l\'objet</string>
+    <string name="prix_objet">Prix de l\'objet</string>
+    <string name="lieu_rencontre">Lieu de rencontre</string>
+    <string name="informations_contact">Informations de contact (tel, mail…)</string>
+    <string name="description_annonce">Description de l\'annonce</string>
+    <string name="etat_objet">Etat de l\'objet</string>
+
+    <string-array name="categories">
+        <item>Vetements</item>
+        <item>Electronique</item>
+        <item>Gadget</item>
+        <item>Soin</item>
+    </string-array>
+
+    <string-array name="lieu_rencontre">
+        <item>Epi 1</item>
+        <item>Epi 2</item>
+        <item>Epi 3</item>
+        <item>Epi 4</item>
+        <item>Epi 5</item>
+        <item>Epi 6</item>
+        <item>Cafette</item>
+        <item>Gymnase</item>
+        <item>MD</item>
+    </string-array>
+
+    <string-array name="etat_objet">
+        <item>Neuf</item>
+        <item>Jamais utilisé</item>
+        <item>Degrade</item>
+        <item>Correct</item>
+    </string-array>
 </resources>

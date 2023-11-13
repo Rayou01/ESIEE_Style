@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentUserBinding;
 
 public class UserFragment extends Fragment {
@@ -25,6 +27,9 @@ public class UserFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.top_Toolbar);
+        toolbar.setTitle("Mon Compte");
+        toolbar.setLogo(R.drawable.baseline_person);
     }
 
     @Override

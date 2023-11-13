@@ -44,9 +44,9 @@
 
         <TextView
             android:id="@+id/product_price_TextView"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Prix du produit"
+            android:text="Prix"
             android:textSize="30sp"
             android:textColor="@color/black"
             android:layout_toStartOf="@+id/add_basket_button"
@@ -74,7 +74,9 @@
             android:textSize="30sp"
             android:textColor="@color/black"
             android:layout_toStartOf="@+id/product_price_TextView"
-            android:layout_alignParentStart="true" />
+            android:layout_toEndOf="@id/annonce_item_image"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"/>
 
         <TextView
             android:id="@+id/seller_name_TextView"
@@ -87,7 +89,8 @@
             android:textColor="@color/grey"
             android:layout_below="@+id/product_name_TextView"
             android:layout_toStartOf="@+id/annonce_date_TextView"
-            android:layout_alignParentStart="true" />
+            android:layout_toEndOf="@id/annonce_item_image"
+            android:layout_marginStart="8dp"/>
 
         <TextView
             android:id="@+id/product_state_TextView"
@@ -97,7 +100,17 @@
             android:text="Etat du produit"
             android:textSize="20sp"
             android:textColor="@color/grey"
-            android:layout_below="@+id/seller_name_TextView" />
+            android:layout_below="@+id/seller_name_TextView"
+            android:layout_toEndOf="@id/annonce_item_image"
+            android:layout_marginStart="8dp"/>
+
+        <ImageView
+            android:id="@+id/annonce_item_image"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:background="#757575"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food_1" />
 
     </RelativeLayout>
 
