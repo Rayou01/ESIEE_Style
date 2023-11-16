@@ -7,13 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".annonce_fragment.HomeFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:id="@+id/top_Toolbar"
-        android:background="@color/blue_text_1"
-        app:titleTextColor="@color/black">
-    </androidx.appcompat.widget.Toolbar>
+    <include
+        android:id="@+id/include_top_bar"
+        layout="@layout/top_bar"/>
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container_view_id_Annonce"
@@ -21,8 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavigationView"
-        android:layout_below="@+id/top_Toolbar"
-        android:layout_alignEnd="@+id/top_Toolbar"
+        android:layout_below="@+id/include_top_bar"
+        android:layout_alignEnd="@+id/include_top_bar"
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp" />
 

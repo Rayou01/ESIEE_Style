@@ -2,6 +2,7 @@ package com.example.esieestyle;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +19,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class AnnonceActivity extends AppCompatActivity {
-    private HomeFragment fragment = new HomeFragment();
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,9 +29,8 @@ public class AnnonceActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.top_Toolbar);
         setSupportActionBar(toolbar);
 
-        //Permet d'activer la toolbar
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        //On ajoute un listener sur la Toolbar
+        BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
+
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -54,6 +53,7 @@ public class AnnonceActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
                     fragmentTransaction.commit();
+                    bottomNavigationView.setVisibility(View.GONE);
                 }
                 else if(item_id == R.id.basket_menu) {
                     Fragment fragment = new BasketFragment();

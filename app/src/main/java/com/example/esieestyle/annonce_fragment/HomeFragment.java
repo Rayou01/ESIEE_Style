@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.esieestyle.R;
 import com.example.esieestyle.adapter.AnnonceAdapter;
 import com.example.esieestyle.databinding.FragmentHomeBinding;
 import com.example.esieestyle.model.Annonce;
@@ -33,16 +31,13 @@ public class HomeFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.top_Toolbar);
-        toolbar.setTitle("ESIEE Style");
-        toolbar.setLogo(R.drawable.baseline_home);
 
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);

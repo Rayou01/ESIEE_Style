@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".annonce_fragment.BasketFragment">
 
     <LinearLayout
+        android:id="@+id/linear_layout_basket"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_above="@+id/toolbar_basket_price"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Résultats obtenus : 0 articles dans votre panier"
-            android:textSize="30sp"
             android:textColor="@color/black"
-            android:textStyle="bold"/>
+            android:textSize="30sp"
+            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recylcer_view_basket"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
-</FrameLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_basket_price"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:minHeight="?attr/actionBarSize"
+        app:title="Total : 45 €"
+        android:background="@color/blue_text_1"
+        app:titleTextColor="@color/black"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

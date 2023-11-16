@@ -6,10 +6,9 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -117,11 +116,11 @@ public class ConnectionFragment extends Fragment {
             password = String.valueOf(binding.userPassword.getText());
 
             if(TextUtils.isEmpty(email)) {
-                //Toast.makeText(getContext(), "Entrer un mail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Entrer un mail", Toast.LENGTH_SHORT).show();
                 return;
             }
             if(TextUtils.isEmpty(password)) {
-                //Toast.makeText(getContext(), "Entrer un mot de passe", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Entrer un mot de passe", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -136,7 +135,7 @@ public class ConnectionFragment extends Fragment {
                             startActivity(intent);
                         }
                         else {
-                            //Toast.makeText(getContext(), "Echec de connexion", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Echec de connexion", Toast.LENGTH_SHORT).show();
                         }
                     }
             });

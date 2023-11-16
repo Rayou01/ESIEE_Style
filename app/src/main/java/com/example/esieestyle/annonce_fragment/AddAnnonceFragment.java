@@ -4,36 +4,25 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.esieestyle.R;
-import com.example.esieestyle.connection_fragment.RegisterFragment;
 import com.example.esieestyle.databinding.FragmentAddAnnonceBinding;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.text.DateFormat;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AddAnnonceFragment extends Fragment {
 
     private FragmentAddAnnonceBinding binding;
     private FirebaseFirestore firebaseFirestore;
+    private BottomNavigationView bottomNavigationView;
 
     public AddAnnonceFragment() {
         // Required empty public constructor
@@ -55,8 +44,8 @@ public class AddAnnonceFragment extends Fragment {
 
         //Permet de récupérer l'id des spinners
         View view = inflater.inflate(R.layout.fragment_add_annonce, container, false);
-        //Initialise le spinner pour les catégories
 
+        //Initialise le spinner pour les catégories
         Spinner spinnerCategories = view.findViewById(R.id.categorie_objet_spinner);
         ArrayAdapter<CharSequence> spinnerCategoriesAdapter = ArrayAdapter.createFromResource(getContext(), R.array.categories, android.R.layout.simple_spinner_item);
         spinnerCategoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -81,6 +70,9 @@ public class AddAnnonceFragment extends Fragment {
         binding.closePage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+                bottomNavigationView.setSelectedItemId(R.id.home_menu);
+                bottomNavigationView.setVisibility(View.VISIBLE);
                 //Naviguer vers le fragment suivant
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

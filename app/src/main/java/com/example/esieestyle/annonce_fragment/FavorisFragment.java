@@ -2,17 +2,13 @@ package com.example.esieestyle.annonce_fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
-import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentFavorisBinding;
 
 public class FavorisFragment extends Fragment {
@@ -31,9 +27,6 @@ public class FavorisFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.top_Toolbar);
-        toolbar.setTitle("Favoris");
-        toolbar.setLogo(R.drawable.baseline_favorite);
     }
 
     @Override
