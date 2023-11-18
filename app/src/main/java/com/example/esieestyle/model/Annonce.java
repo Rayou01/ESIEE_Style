@@ -9,14 +9,14 @@ public class Annonce {
     private String productName;
     private String SellerName;
     private String productState;
-    private float productPrice;
+    private String productPrice;
     private Date annonceDate;
     private Button favorite_button;
 
     public  Annonce(){
 
     }
-    public Annonce(String productName, String sellerName, String productState, float productPrice, Date annonceDate, Button favorite_button) {
+    public Annonce(String productName, String sellerName, String productState, String productPrice, Date annonceDate, Button favorite_button) {
         this.productName = productName;
         this.SellerName = sellerName;
         this.productState = productState;
@@ -37,7 +37,7 @@ public class Annonce {
         return productState;
     }
 
-    public float getProductPrice() {
+    public String getProductPrice() {
         return productPrice;
     }
 
@@ -57,7 +57,7 @@ public class Annonce {
         this.productState = productState;
     }
 
-    public void setProductPrice(float productPrice) {
+    public void setProductPrice(String productPrice) {
         this.productPrice = productPrice;
     }
 

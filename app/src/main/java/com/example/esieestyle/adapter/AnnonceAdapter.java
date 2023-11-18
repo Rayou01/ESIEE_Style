@@ -1,6 +1,5 @@
 package com.example.esieestyle.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +11,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esieestyle.R;
 import com.example.esieestyle.model.Annonce;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.util.ArrayList;
+public class AnnonceAdapter extends FirestoreRecyclerAdapter<Annonce, AnnonceAdapter.AnnonceViewHolder> {
 
-public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceViewHolder> {
-
-    private ArrayList<Annonce> annonces;
-    private Context context;
-
-    public AnnonceAdapter(Context context) {
-        this.context = context;
-        this.annonces = new ArrayList<>();
+    public AnnonceAdapter(@NonNull FirestoreRecyclerOptions<Annonce> options) {
+        super(options);
     }
 
-    public void add(Annonce annonce) {
-        annonces.add(annonce);
-        notifyDataSetChanged();
+    @Override
+    protected void onBindViewHolder(@NonNull AnnonceViewHolder holder, int position, @NonNull Annonce model) {
+        holder.textView_productName.setText(model.getProductName());
+        holder.textView_sellerName.setText(model.getSellerName());
+        holder.textView_productState.setText(model.getProductState());
+        holder.textView_productPrice.setText(model.getProductPrice());
+        holder.textView_annonceDate.setText(String.valueOf(model.getAnnonceDate()));
     }
 
     @NonNull
@@ -35,21 +34,6 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceV
     public AnnonceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.annonce_view, parent, false);
         return new AnnonceViewHolder(v);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull AnnonceViewHolder holder, int position) {
-        Annonce annonce = annonces.get(position);
-        holder.textView_productName.setText(annonce.getProductName());
-        holder.textView_sellerName.setText(annonce.getSellerName());
-        holder.textView_productState.setText(annonce.getProductState());
-        holder.textView_productPrice.setText(String.valueOf(annonce.getProductPrice()));
-        holder.textView_annonceDate.setText(String.valueOf(annonce.getAnnonceDate()));
-    }
-
-    @Override
-    public int getItemCount() {
-        return annonces.size();
     }
 
     public static class AnnonceViewHolder extends RecyclerView.ViewHolder{

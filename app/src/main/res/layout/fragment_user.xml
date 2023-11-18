@@ -27,7 +27,6 @@
         android:textColor="@color/black"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/informations_user_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/nom_prenom_user"
@@ -36,6 +35,7 @@
         android:layout_toEndOf="@+id/photo_user_imageView">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/informations_user_editText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Mes Informations"

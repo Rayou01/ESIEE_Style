@@ -3,6 +3,8 @@ package com.example.esieestyle.annonce_fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class UserFragment extends Fragment {
 
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FragmentUserBinding binding;
 
     public UserFragment() {
@@ -33,9 +35,6 @@ public class UserFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.top_Toolbar);
-        //toolbar.setTitle("Mon Compte");
-        //toolbar.setLogo(R.drawable.baseline_person);
     }
 
     @Override
@@ -54,6 +53,23 @@ public class UserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 displayDeconnectionDialogWindows();
+            }
+        });
+
+        binding.informationsUserEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
     }
