@@ -1,5 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+
+
+    <!-- Mettre : Theme.AppCompat.Light.NoActionBar pour avoir les couleur qui changent
+         et pareil sur l'autre fichier theme -->
+
     <style name="Base.Theme.ESIEEStyle" parent="Theme.Material3.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
@@ -26,6 +31,12 @@
     <style name="Base.Theme.ESIEEStyle.Caption">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="ActionBarTitle" parent="Widget.AppCompat.Toolbar">
+        <item name="fontFamily">sans-serif-black</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Theme.ESIEEStyle" parent="Base.Theme.ESIEEStyle" />

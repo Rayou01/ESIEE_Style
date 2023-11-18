@@ -6,7 +6,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -19,15 +18,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class AnnonceActivity extends AppCompatActivity {
-    
+
+    private Fragment fragment = new HomeFragment();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annonce);
-
-        //Récupère la Toolbar et l'active sur l'activité
-        Toolbar toolbar = findViewById(R.id.top_Toolbar);
-        setSupportActionBar(toolbar);
 
         BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
 
@@ -37,38 +33,33 @@ public class AnnonceActivity extends AppCompatActivity {
                 int item_id = item.getItemId();
 
                 if(item_id == R.id.home_menu) {
-                    Fragment fragment = new HomeFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
+                    fragment = new HomeFragment();
                 }
                 else if(item_id == R.id.favorite_menu) {
-                    Fragment fragment = new FavorisFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
+                    fragment = new FavorisFragment();
                 }
                 else if(item_id == R.id.add_annonce_menu) {
-                    Fragment fragment = new AddAnnonceFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
+                    fragment = new AddAnnonceFragment();
+                    changeFragment();
                     bottomNavigationView.setVisibility(View.GONE);
+                    return true;
                 }
                 else if(item_id == R.id.basket_menu) {
-                    Fragment fragment = new BasketFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
+                    fragment = new BasketFragment();
                 }
                 else if(item_id == R.id.user_avatar_menu) {
-                    Fragment fragment = new UserFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
+                    fragment = new UserFragment();
                 }
+                changeFragment();
                 return true;
             }
         });
+    }
+
+    private void changeFragment()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
+        fragmentTransaction.commit();
     }
 }

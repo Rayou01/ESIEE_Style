@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentFavorisBinding;
 
 public class FavorisFragment extends Fragment {
@@ -40,5 +41,9 @@ public class FavorisFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.includeTopBarFavoris.topToolbar.getMenu().clear();
+        binding.includeTopBarFavoris.topToolbar.setTitle("Favoris");
+        binding.includeTopBarFavoris.topToolbar.setLogo(R.drawable.baseline_favorite);
     }
 }

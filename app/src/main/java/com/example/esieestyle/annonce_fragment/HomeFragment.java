@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.esieestyle.R;
 import com.example.esieestyle.adapter.AnnonceAdapter;
 import com.example.esieestyle.databinding.FragmentHomeBinding;
 import com.example.esieestyle.model.Annonce;
@@ -20,7 +21,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment{
 
     private FragmentHomeBinding binding;
     private AnnonceAdapter adapter;
@@ -47,6 +48,11 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.includeTopBarHome.topToolbar.getMenu().clear();
+        binding.includeTopBarHome.topToolbar.setTitle("Home");
+        binding.includeTopBarHome.topToolbar.setLogo(R.drawable.baseline_home);
+        binding.includeTopBarHome.topToolbar.inflateMenu(R.menu.home_menu);
 
         adapter = new AnnonceAdapter(getContext());
         binding.recylcerViewAnnonce.setAdapter(adapter);

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import com.example.esieestyle.model.Annonce;
 import java.util.ArrayList;
 
 public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceViewHolder> {
+
     private ArrayList<Annonce> annonces;
     private Context context;
 
@@ -57,6 +59,7 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceV
         public TextView textView_productState;
         public TextView textView_productPrice;
         public TextView textView_annonceDate;
+        public Button favorite_button;
 
         public AnnonceViewHolder(@NonNull View itemView) {
             super(itemView);
