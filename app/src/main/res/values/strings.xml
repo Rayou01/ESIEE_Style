@@ -26,6 +26,7 @@
     <string name="informations_contact">Informations de contact (tel, mail…)</string>
     <string name="description_annonce">Description de l\'annonce</string>
     <string name="etat_objet">Etat de l\'objet</string>
+    <string name="vos_informations">Vos informations</string>
 
     <string-array name="categories">
         <item>Vetements</item>

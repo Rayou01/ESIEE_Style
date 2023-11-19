@@ -1,15 +1,16 @@
 package com.example.esieestyle.annonce_fragment;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -19,6 +20,7 @@ import com.example.esieestyle.databinding.FragmentAddAnnonceBinding;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -26,12 +28,13 @@ import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class AddAnnonceFragment extends Fragment {
 
     private FragmentAddAnnonceBinding binding;
     private FirebaseFirestore firebaseFirestore;
-    private BottomNavigationView bottomNavigationView;
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     public AddAnnonceFragment() {
         // Required empty public constructor
@@ -62,16 +65,14 @@ public class AddAnnonceFragment extends Fragment {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         //Initialise le spinner pour les catégories
-        Spinner spinnerCategories = view.findViewById(R.id.categorie_objet_spinner);
         ArrayAdapter<CharSequence> spinnerCategoriesAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.categories, android.R.layout.simple_spinner_item);
         spinnerCategoriesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCategories.setAdapter(spinnerCategoriesAdapter);
+        binding.categorieObjetSpinner.setAdapter(spinnerCategoriesAdapter);
 
         //Initialise le spinner pour l'état de l'objet
-        Spinner spinnerState = view.findViewById(R.id.etat_objet_spinner);
         ArrayAdapter<CharSequence> spinnerStateAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.etat_objet, android.R.layout.simple_spinner_item);
         spinnerStateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerState.setAdapter(spinnerStateAdapter);
+        binding.etatObjetSpinner.setAdapter(spinnerStateAdapter);
 
         binding.closePage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,23 +85,37 @@ public class AddAnnonceFragment extends Fragment {
         binding.newDoneAnnonce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String titleAnnonce = binding.titleAnnonceEditText.getEditText().getText().toString();
+                //On récupère les données sous forme de String
+                String titleAnnonce = Objects.requireNonNull(binding.titleAnnonceEditText.getEditText()).getText().toString();
                 String stateAnnonce = binding.etatObjetSpinner.getSelectedItem().toString();
-                String priceAnnonce = binding.prixObjetInputText.getEditText().getText().toString();
-                String infosAnnonce = binding.informationsContactTextView2.getText().toString();
-                String descriptionAnnonce = binding.descriptionAnnonceInputText.getEditText().getText().toString();
+                String priceAnnonce = Objects.requireNonNull(binding.prixObjetInputText.getEditText()).getText().toString();
+                //String infosAnnonce = binding.informationsContactTextView2.getText().toString();
+                //String descriptionAnnonce = binding.descriptionAnnonceInputText.getEditText().getText().toString();
+
+                //On vérifie si elles sont vides
+                if (titleAnnonce.equals("") || priceAnnonce.equals("")){
+                    displayDialogWindows();
+                    return;
+                }
+                //On récupère la date du jour (sans l'heure) que l'on envoie sous forme de string
                 Calendar calendar = Calendar.getInstance();
                 String dateAnnonce = DateFormat.getDateInstance().format(calendar.getTime());
 
-                Map<String,Object> newAnnonce = new HashMap<>();
-                newAnnonce.put("productName",titleAnnonce);
-                newAnnonce.put("sellerName","Vendeurdufutur");
-                newAnnonce.put("producPrice",priceAnnonce);
-                newAnnonce.put("productState",stateAnnonce);
-                //newAnnonce.put("annonceDate",dateAnnonce);
+                //On retire le symbole € de la string et on récupère le float
+                String[] priceString = priceAnnonce.split(" ");
+                float priceProduct = Float.parseFloat(priceString[0]);
+
+                //On ajoute les données de l'annonce
+                Map<String, Object> newAnnonce = new HashMap<>();
+                newAnnonce.put("productName", titleAnnonce);
+                newAnnonce.put("sellerName", "Vendeurdufutur");
+                newAnnonce.put("productPrice", priceProduct);
+                newAnnonce.put("annonceDate", dateAnnonce);
+                newAnnonce.put("productState", stateAnnonce);
                 //newAnnonce.put("annonceInfos",infosAnnonce);
                 //newAnnonce.put("annonceDescription",descriptionAnnonce);
 
+                //Enfin, on poste l'annonce sur Firestore
                 firebaseFirestore.collection("Annonces")
                         .add(newAnnonce)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -115,13 +130,26 @@ public class AddAnnonceFragment extends Fragment {
                                 Toast.makeText(requireContext(), "Echec de publication", Toast.LENGTH_SHORT).show();
                             }
                         });
-
-            }
+                }
         });
     }
 
+    private void displayDialogWindows() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+
+        builder.setTitle("Publication impossible");
+        builder.setMessage("Veuillez remplir toutes les informations");
+        builder.setPositiveButton("Compris", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     private void goOnHomeFragment(){
-        bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.home_menu);
         bottomNavigationView.setVisibility(View.VISIBLE);
         FragmentManager fragmentManager = getParentFragmentManager();

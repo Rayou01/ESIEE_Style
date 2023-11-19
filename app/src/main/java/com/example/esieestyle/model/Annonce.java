@@ -2,21 +2,19 @@ package com.example.esieestyle.model;
 
 import android.widget.Button;
 
-import java.util.Date;
-
 public class Annonce {
 
     private String productName;
     private String SellerName;
     private String productState;
-    private String productPrice;
-    private Date annonceDate;
+    private float productPrice;
+    private String annonceDate;
     private Button favorite_button;
 
     public  Annonce(){
 
     }
-    public Annonce(String productName, String sellerName, String productState, String productPrice, Date annonceDate, Button favorite_button) {
+    public Annonce(String productName, String sellerName, String productState, float productPrice, String annonceDate, Button favorite_button) {
         this.productName = productName;
         this.SellerName = sellerName;
         this.productState = productState;
@@ -37,11 +35,11 @@ public class Annonce {
         return productState;
     }
 
-    public String getProductPrice() {
+    public float getProductPrice() {
         return productPrice;
     }
 
-    public Date getAnnonceDate() {
+    public String getAnnonceDate() {
         return annonceDate;
     }
 
@@ -57,11 +55,11 @@ public class Annonce {
         this.productState = productState;
     }
 
-    public void setProductPrice(String productPrice) {
+    public void setProductPrice(float productPrice) {
         this.productPrice = productPrice;
     }
 
-    public void setAnnonceDate(Date annonceDate) {
+    public void setAnnonceDate(String annonceDate) {
         this.annonceDate = annonceDate;
     }
 

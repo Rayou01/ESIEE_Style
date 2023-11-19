@@ -22,11 +22,13 @@ public class AnnonceAdapter extends FirestoreRecyclerAdapter<Annonce, AnnonceAda
 
     @Override
     protected void onBindViewHolder(@NonNull AnnonceViewHolder holder, int position, @NonNull Annonce model) {
+        String priceString = model.getProductPrice() + " €";
+
         holder.textView_productName.setText(model.getProductName());
         holder.textView_sellerName.setText(model.getSellerName());
         holder.textView_productState.setText(model.getProductState());
-        holder.textView_productPrice.setText(model.getProductPrice());
-        holder.textView_annonceDate.setText(String.valueOf(model.getAnnonceDate()));
+        holder.textView_productPrice.setText(priceString);
+        holder.textView_annonceDate.setText(model.getAnnonceDate());
     }
 
     @NonNull

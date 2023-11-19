@@ -75,7 +75,7 @@ public class UserFragment extends Fragment {
     }
 
     private void displayDeconnectionDialogWindows() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 
         builder.setTitle("Vous allez vous déconnecter");
         builder.setMessage("Voulez-vous vraiment vous déconnecter ?");
