@@ -8,10 +8,10 @@
     <ImageView
         android:id="@+id/photo_user_imageView"
         android:layout_width="300dp"
-        android:layout_height="250dp"
+        android:layout_height="300dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/food_1"
+        android:background="@drawable/baseline_person"
         android:contentDescription="@string/photo_objet" />
 
     <TextView
@@ -21,7 +21,7 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/photo_user_imageView"
         android:layout_toStartOf="@+id/deconnecte_button"
-        android:text="Nom Prenom"
+        android:text="@string/nom_prenom"
         android:gravity="center"
         android:textSize="50sp"
         android:textColor="@color/black"/>
@@ -38,7 +38,7 @@
             android:id="@+id/informations_user_editText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Mes Informations"
+            android:text="@string/mes_informations"
             android:textSize="20sp"
             android:gravity="start|top"
             android:inputType="textMultiLine"

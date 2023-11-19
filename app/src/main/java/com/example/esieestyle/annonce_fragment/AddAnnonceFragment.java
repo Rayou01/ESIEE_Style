@@ -1,6 +1,5 @@
 package com.example.esieestyle.annonce_fragment;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentAddAnnonceBinding;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
@@ -34,15 +29,13 @@ public class AddAnnonceFragment extends Fragment {
 
     private FragmentAddAnnonceBinding binding;
     private FirebaseFirestore firebaseFirestore;
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     public AddAnnonceFragment() {
         // Required empty public constructor
     }
 
     public static AddAnnonceFragment newInstance() {
-        AddAnnonceFragment fragment = new AddAnnonceFragment();
-        return fragment;
+        return new AddAnnonceFragment();
     }
 
     @Override
@@ -51,7 +44,7 @@ public class AddAnnonceFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
@@ -74,63 +67,47 @@ public class AddAnnonceFragment extends Fragment {
         spinnerStateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.etatObjetSpinner.setAdapter(spinnerStateAdapter);
 
-        binding.closePage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Naviguer vers le fragment Home
-                goOnHomeFragment();
-            }
+        binding.closePage.setOnClickListener(view1 -> {
+            //Naviguer vers le fragment Home
+            goOnHomeFragment();
         });
 
-        binding.newDoneAnnonce.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //On récupère les données sous forme de String
-                String titleAnnonce = Objects.requireNonNull(binding.titleAnnonceEditText.getEditText()).getText().toString();
-                String stateAnnonce = binding.etatObjetSpinner.getSelectedItem().toString();
-                String priceAnnonce = Objects.requireNonNull(binding.prixObjetInputText.getEditText()).getText().toString();
-                //String infosAnnonce = binding.informationsContactTextView2.getText().toString();
-                //String descriptionAnnonce = binding.descriptionAnnonceInputText.getEditText().getText().toString();
+        binding.newDoneAnnonce.setOnClickListener(view12 -> {
+            //On récupère les données sous forme de String
+            String titleAnnonce = Objects.requireNonNull(binding.titleAnnonceEditText.getEditText()).getText().toString();
+            String stateAnnonce = binding.etatObjetSpinner.getSelectedItem().toString();
+            String priceAnnonce = Objects.requireNonNull(binding.prixObjetInputText.getEditText()).getText().toString();
+            //String infosAnnonce = binding.informationsContactTextView2.getText().toString();
+            //String descriptionAnnonce = binding.descriptionAnnonceInputText.getEditText().getText().toString();
 
-                //On vérifie si elles sont vides
-                if (titleAnnonce.equals("") || priceAnnonce.equals("")){
-                    displayDialogWindows();
-                    return;
-                }
-                //On récupère la date du jour (sans l'heure) que l'on envoie sous forme de string
-                Calendar calendar = Calendar.getInstance();
-                String dateAnnonce = DateFormat.getDateInstance().format(calendar.getTime());
+            //On vérifie si elles sont vides
+            if (titleAnnonce.equals("") || priceAnnonce.equals("")){
+                displayDialogWindows();
+                return;
+            }
+            //On récupère la date du jour (sans l'heure) que l'on envoie sous forme de string
+            Calendar calendar = Calendar.getInstance();
+            String dateAnnonce = DateFormat.getDateInstance().format(calendar.getTime());
 
-                //On retire le symbole € de la string et on récupère le float
-                String[] priceString = priceAnnonce.split(" ");
-                float priceProduct = Float.parseFloat(priceString[0]);
+            //On retire le symbole € de la string et on récupère le float
+            String[] priceString = priceAnnonce.split(" ");
+            float priceProduct = Float.parseFloat(priceString[0]);
 
-                //On ajoute les données de l'annonce
-                Map<String, Object> newAnnonce = new HashMap<>();
-                newAnnonce.put("productName", titleAnnonce);
-                newAnnonce.put("sellerName", "Vendeurdufutur");
-                newAnnonce.put("productPrice", priceProduct);
-                newAnnonce.put("annonceDate", dateAnnonce);
-                newAnnonce.put("productState", stateAnnonce);
-                //newAnnonce.put("annonceInfos",infosAnnonce);
-                //newAnnonce.put("annonceDescription",descriptionAnnonce);
+            //On ajoute les données de l'annonce
+            Map<String, Object> newAnnonce = new HashMap<>();
+            newAnnonce.put("productName", titleAnnonce);
+            newAnnonce.put("sellerName", "Vendeurdufutur");
+            newAnnonce.put("productPrice", priceProduct);
+            newAnnonce.put("annonceDate", dateAnnonce);
+            newAnnonce.put("productState", stateAnnonce);
+            //newAnnonce.put("annonceInfos",infosAnnonce);
+            //newAnnonce.put("annonceDescription",descriptionAnnonce);
 
-                //Enfin, on poste l'annonce sur Firestore
-                firebaseFirestore.collection("Annonces")
-                        .add(newAnnonce)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                goOnHomeFragment();
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(requireContext(), "Echec de publication", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                }
+            //Enfin, on poste l'annonce sur Firestore
+            firebaseFirestore.collection("Annonces")
+                    .add(newAnnonce)
+                    .addOnSuccessListener(documentReference -> goOnHomeFragment())
+                    .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec de publication", Toast.LENGTH_SHORT).show());
         });
     }
 
@@ -139,10 +116,8 @@ public class AddAnnonceFragment extends Fragment {
 
         builder.setTitle("Publication impossible");
         builder.setMessage("Veuillez remplir toutes les informations");
-        builder.setPositiveButton("Compris", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        builder.setPositiveButton("Compris", (dialog, id) -> {
 
-            }
         });
         AlertDialog dialog = builder.create();
         dialog.show();

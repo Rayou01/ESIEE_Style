@@ -27,6 +27,8 @@
     <string name="description_annonce">Description de l\'annonce</string>
     <string name="etat_objet">Etat de l\'objet</string>
     <string name="vos_informations">Vos informations</string>
+    <string name="mes_informations">Mes Informations</string>
+    <string name="nom_prenom">Nom Prenom</string>
 
     <string-array name="categories">
         <item>Vetements</item>

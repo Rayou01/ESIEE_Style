@@ -9,7 +9,6 @@ public class Annonce {
     private String productState;
     private float productPrice;
     private String annonceDate;
-    private Button favorite_button;
 
     public  Annonce(){
 
@@ -20,7 +19,6 @@ public class Annonce {
         this.productState = productState;
         this.productPrice = productPrice;
         this.annonceDate = annonceDate;
-        this.favorite_button = favorite_button;
     }
 
     public String getProductName() {
@@ -61,9 +59,5 @@ public class Annonce {
 
     public void setAnnonceDate(String annonceDate) {
         this.annonceDate = annonceDate;
-    }
-
-    public Button getFavorite_button() {
-        return favorite_button;
     }
 }
