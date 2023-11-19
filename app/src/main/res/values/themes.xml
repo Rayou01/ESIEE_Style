@@ -28,5 +28,10 @@
         <item name="android:textSize">17sp</item>
     </style>
 
+    <style name="Base.Theme.ESIEEStyle.Logo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">150dp</item>
+    </style>
+
     <style name="Theme.ESIEEStyle" parent="Base.Theme.ESIEEStyle" />
 </resources>

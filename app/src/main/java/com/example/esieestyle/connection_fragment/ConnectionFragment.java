@@ -102,11 +102,20 @@ public class ConnectionFragment extends Fragment {
 
 
         binding.registerButton.setOnClickListener(view1 -> {
-            //Naviguer vers le fragment suivant
+            //Naviguer vers le fragment register
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             RegisterFragment registerFragment = new RegisterFragment();
             fragmentTransaction.replace(R.id.fragment_container_view_id_Main, registerFragment);
+            fragmentTransaction.commit();
+        });
+
+        binding.forgotId.setOnClickListener(view1 -> {
+            //Naviguer vers le fragment forgot
+            FragmentManager fragmentManager = getParentFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            ForgotFragment forgotFragment = new ForgotFragment();
+            fragmentTransaction.replace(R.id.fragment_container_view_id_Main, forgotFragment);
             fragmentTransaction.commit();
         });
 

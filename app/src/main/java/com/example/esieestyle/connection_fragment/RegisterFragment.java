@@ -158,7 +158,7 @@ public class RegisterFragment extends Fragment {
         });
 
         binding.registerToConnectionPageButton.setOnClickListener(view1 -> {
-            //Naviguer vers le fragment précédent
+            //Naviguer vers le fragment connection
             FragmentManager fragmentManager = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             ConnectionFragment connectionFragment = new ConnectionFragment();
