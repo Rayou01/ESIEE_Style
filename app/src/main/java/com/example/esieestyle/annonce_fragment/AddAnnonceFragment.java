@@ -17,6 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentAddAnnonceBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
@@ -28,7 +30,10 @@ import java.util.Objects;
 public class AddAnnonceFragment extends Fragment {
 
     private FragmentAddAnnonceBinding binding;
-    private FirebaseFirestore firebaseFirestore;
+    FirebaseFirestore firebaseFirestore;
+    FirebaseAuth firebaseAuth;
+    String userID;
+    Map<String, Object> newAnnonce;
 
     public AddAnnonceFragment() {
         // Required empty public constructor
@@ -46,6 +51,8 @@ public class AddAnnonceFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         // Inflate the layout for this fragment
         binding = FragmentAddAnnonceBinding.inflate(inflater, container, false);
@@ -94,7 +101,7 @@ public class AddAnnonceFragment extends Fragment {
             float priceProduct = Float.parseFloat(priceString[0]);
 
             //On ajoute les données de l'annonce
-            Map<String, Object> newAnnonce = new HashMap<>();
+            newAnnonce = new HashMap<>();
             newAnnonce.put("productName", titleAnnonce);
             newAnnonce.put("sellerName", "Vendeurdufutur");
             newAnnonce.put("productPrice", priceProduct);
@@ -106,7 +113,7 @@ public class AddAnnonceFragment extends Fragment {
             //Enfin, on poste l'annonce sur Firestore
             firebaseFirestore.collection("Annonces")
                     .add(newAnnonce)
-                    .addOnSuccessListener(documentReference -> goOnHomeFragment())
+                    .addOnSuccessListener(documentReference -> addUserAnnonceFirestore())
                     .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec de publication", Toast.LENGTH_SHORT).show());
         });
     }
@@ -132,5 +139,18 @@ public class AddAnnonceFragment extends Fragment {
         HomeFragment homeFragment = new HomeFragment();
         fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, homeFragment);
         fragmentTransaction.commit();
+    }
+
+    private void addUserAnnonceFirestore(){
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if(firebaseUser != null){
+            userID = firebaseUser.getUid();
+
+            firebaseFirestore.collection("Users").document(userID).collection("Annonces ajoutées")
+                    .add(newAnnonce)
+                    .addOnSuccessListener(documentReference -> goOnHomeFragment())
+                    .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec d'enregistrement", Toast.LENGTH_SHORT).show());
+        }
     }
 }

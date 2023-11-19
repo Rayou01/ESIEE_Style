@@ -198,7 +198,8 @@ public class RegisterFragment extends Fragment {
             users.put("userPhone", Objects.requireNonNull(binding.phoneNumber.getText()).toString());
 
             firebaseFirestore.collection("Users")
-                    .add(users)
+                    .document(userID)
+                    .set(users)
                     .addOnSuccessListener(documentReference -> startActivity(new Intent(getActivity(), AnnonceActivity.class)))
                     .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec d'enregistrement", Toast.LENGTH_SHORT).show());
         }
