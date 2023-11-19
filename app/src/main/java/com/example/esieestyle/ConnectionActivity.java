@@ -2,6 +2,7 @@ package com.example.esieestyle;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 /*
 Reference pour l'avancer effectue par Ryan :
@@ -14,5 +15,22 @@ public class ConnectionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void onBackPressed() {
+        displayDialogWindows();
+    }
+
+    private void displayDialogWindows(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Vous allez quitter l'application");
+        builder.setMessage("Continuer ?");
+        builder.setPositiveButton("Quitter", (dialog, id) -> finishAffinity())
+                .setNegativeButton("Annuler", (dialogInterface, i) -> {
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

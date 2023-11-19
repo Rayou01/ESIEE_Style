@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".annonce_fragment.FavorisFragment">
 
+    <include
+        android:id="@+id/include_top_bar_favoris"
+        layout="@layout/top_bar"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/include_top_bar_favoris">
 
         <TextView
             android:layout_width="match_parent"
@@ -24,4 +29,4 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

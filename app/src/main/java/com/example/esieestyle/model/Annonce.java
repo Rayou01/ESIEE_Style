@@ -1,6 +1,6 @@
 package com.example.esieestyle.model;
 
-import java.util.Date;
+import android.widget.Button;
 
 public class Annonce {
 
@@ -8,12 +8,12 @@ public class Annonce {
     private String SellerName;
     private String productState;
     private float productPrice;
-    private Date annonceDate;
+    private String annonceDate;
 
     public  Annonce(){
 
     }
-    public Annonce(String productName, String sellerName, String productState, float productPrice, Date annonceDate) {
+    public Annonce(String productName, String sellerName, String productState, float productPrice, String annonceDate, Button favorite_button) {
         this.productName = productName;
         this.SellerName = sellerName;
         this.productState = productState;
@@ -37,7 +37,7 @@ public class Annonce {
         return productPrice;
     }
 
-    public Date getAnnonceDate() {
+    public String getAnnonceDate() {
         return annonceDate;
     }
 
@@ -57,7 +57,7 @@ public class Annonce {
         this.productPrice = productPrice;
     }
 
-    public void setAnnonceDate(Date annonceDate) {
+    public void setAnnonceDate(String annonceDate) {
         this.annonceDate = annonceDate;
     }
 }

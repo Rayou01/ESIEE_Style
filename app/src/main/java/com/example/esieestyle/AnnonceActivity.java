@@ -1,12 +1,11 @@
 package com.example.esieestyle;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 
-import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -16,59 +15,78 @@ import com.example.esieestyle.annonce_fragment.FavorisFragment;
 import com.example.esieestyle.annonce_fragment.HomeFragment;
 import com.example.esieestyle.annonce_fragment.UserFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AnnonceActivity extends AppCompatActivity {
-    
+
+    private Fragment fragment = new HomeFragment();
+    private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_annonce);
 
-        //Récupère la Toolbar et l'active sur l'activité
-        Toolbar toolbar = findViewById(R.id.top_Toolbar);
-        setSupportActionBar(toolbar);
+        bottomNavigationView= findViewById(R.id.bottomNavigationView);
 
-        BottomNavigationView bottomNavigationView= findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int item_id = item.getItemId();
 
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int item_id = item.getItemId();
-
-                if(item_id == R.id.home_menu) {
-                    Fragment fragment = new HomeFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
-                }
-                else if(item_id == R.id.favorite_menu) {
-                    Fragment fragment = new FavorisFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
-                }
-                else if(item_id == R.id.add_annonce_menu) {
-                    Fragment fragment = new AddAnnonceFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
-                    bottomNavigationView.setVisibility(View.GONE);
-                }
-                else if(item_id == R.id.basket_menu) {
-                    Fragment fragment = new BasketFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
-                }
-                else if(item_id == R.id.user_avatar_menu) {
-                    Fragment fragment = new UserFragment();
-                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
-                    fragmentTransaction.commit();
-                }
+            if(item_id == R.id.home_menu) {
+                fragment = new HomeFragment();
+            }
+            else if(item_id == R.id.favorite_menu) {
+                fragment = new FavorisFragment();
+            }
+            else if(item_id == R.id.add_annonce_menu) {
+                fragment = new AddAnnonceFragment();
+                changeFragment();
+                bottomNavigationView.setVisibility(View.GONE);
                 return true;
             }
+            else if(item_id == R.id.basket_menu) {
+                fragment = new BasketFragment();
+            }
+            else if(item_id == R.id.user_avatar_menu) {
+                fragment = new UserFragment();
+            }
+            changeFragment();
+            return true;
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container_view_id_Annonce);
+        if(!(currentFragment instanceof HomeFragment)){
+            fragment = new HomeFragment();
+            changeFragment();
+        }
+        else
+            displayDialogWindows();
+        bottomNavigationView.setSelectedItemId(R.id.home_menu);
+    }
+
+    private void changeFragment()
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, fragment);
+        fragmentTransaction.commit();
+    }
+
+    private void displayDialogWindows(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Vous allez vous déconnecter");
+        builder.setMessage("Voulez-vous vraiment vous déconnecter ?");
+        builder.setPositiveButton("Déconnecter", (dialog, id) -> {
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            firebaseAuth.signOut();
+            Intent intent = new Intent(AnnonceActivity.this, ConnectionActivity.class);
+            startActivity(intent);
+        })
+                .setNegativeButton("Annuler", (dialogInterface, i) -> {
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }

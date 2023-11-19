@@ -31,7 +31,9 @@
             android:layout_marginBottom="15dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="-2dp"
+            android:layout_marginEnd="10dp"
             android:layout_toEndOf="@+id/product_image"
+            android:layout_toStartOf="@+id/product_price_TextView"
             android:ellipsize="end"
             android:maxLines="1"
             tools:text="Nom du produit" />
@@ -80,18 +82,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/product_image"
-            android:layout_toStartOf="@+id/favorite_button"
-            android:paddingEnd="50dp"
-            android:text="Prix du produit"
+            android:layout_toStartOf="@+id/add_basket_button"
+            android:layout_marginEnd="15dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="Price"
             tools:ignore="RtlSymmetry" />
+
 
         <Button
             android:id="@+id/favorite_button"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/baseline_favorite"
+            android:background="@drawable/baseline_favorite_border"
             tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/add_basket_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_toStartOf="@+id/favorite_button"
+            android:layout_marginEnd="15dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/baseline_add_shopping_cart" />
 
         <Button
             android:id="@+id/phone_button"

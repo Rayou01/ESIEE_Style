@@ -1,9 +1,9 @@
 package com.example.esieestyle.adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,21 +11,24 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esieestyle.R;
 import com.example.esieestyle.model.Annonce;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 
-import java.util.ArrayList;
+public class AnnonceAdapter extends FirestoreRecyclerAdapter<Annonce, AnnonceAdapter.AnnonceViewHolder> {
 
-public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceViewHolder> {
-    private ArrayList<Annonce> annonces;
-    private Context context;
-
-    public AnnonceAdapter(Context context) {
-        this.context = context;
-        this.annonces = new ArrayList<>();
+    public AnnonceAdapter(@NonNull FirestoreRecyclerOptions<Annonce> options) {
+        super(options);
     }
 
-    public void add(Annonce annonce) {
-        annonces.add(annonce);
-        notifyDataSetChanged();
+    @Override
+    protected void onBindViewHolder(@NonNull AnnonceViewHolder holder, int position, @NonNull Annonce model) {
+        String priceString = model.getProductPrice() + " €";
+
+        holder.textView_productName.setText(model.getProductName());
+        holder.textView_sellerName.setText(model.getSellerName());
+        holder.textView_productState.setText(model.getProductState());
+        holder.textView_productPrice.setText(priceString);
+        holder.textView_annonceDate.setText(model.getAnnonceDate());
     }
 
     @NonNull
@@ -35,21 +38,6 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceV
         return new AnnonceViewHolder(v);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull AnnonceViewHolder holder, int position) {
-        Annonce annonce = annonces.get(position);
-        holder.textView_productName.setText(annonce.getProductName());
-        holder.textView_sellerName.setText(annonce.getSellerName());
-        holder.textView_productState.setText(annonce.getProductState());
-        holder.textView_productPrice.setText(String.valueOf(annonce.getProductPrice()));
-        holder.textView_annonceDate.setText(String.valueOf(annonce.getAnnonceDate()));
-    }
-
-    @Override
-    public int getItemCount() {
-        return annonces.size();
-    }
-
     public static class AnnonceViewHolder extends RecyclerView.ViewHolder{
 
         public TextView textView_productName;
@@ -57,6 +45,7 @@ public class AnnonceAdapter extends RecyclerView.Adapter<AnnonceAdapter.AnnonceV
         public TextView textView_productState;
         public TextView textView_productPrice;
         public TextView textView_annonceDate;
+        public Button favorite_button;
 
         public AnnonceViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -10,18 +10,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.esieestyle.R;
 import com.example.esieestyle.adapter.AnnonceAdapter;
 import com.example.esieestyle.databinding.FragmentHomeBinding;
 import com.example.esieestyle.model.Annonce;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Query;
 
-import java.util.List;
+public class HomeFragment extends Fragment{
 
-public class HomeFragment extends Fragment {
-
+    private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FragmentHomeBinding binding;
     private AnnonceAdapter adapter;
 
@@ -38,9 +39,17 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+
+        Query query = firebaseFirestore.collection("Annonces").orderBy("productPrice", Query.Direction.ASCENDING);
+        FirestoreRecyclerOptions<Annonce> options = new FirestoreRecyclerOptions.Builder<Annonce>()
+                .setQuery(query, Annonce.class)
+                .build();
+        adapter = new AnnonceAdapter(options);
+        binding.recylcerViewAnnonce.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.recylcerViewAnnonce.setAdapter(adapter);
+
         return binding.getRoot();
     }
 
@@ -48,25 +57,21 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        adapter = new AnnonceAdapter(getContext());
-        binding.recylcerViewAnnonce.setAdapter(adapter);
-        binding.recylcerViewAnnonce.setLayoutManager(new LinearLayoutManager(getContext()));
-        setUpRecyclerView();
+        binding.includeTopBarHome.topToolbar.getMenu().clear();
+        binding.includeTopBarHome.topToolbar.setTitle("Home");
+        binding.includeTopBarHome.topToolbar.setLogo(R.drawable.baseline_home);
+        binding.includeTopBarHome.topToolbar.inflateMenu(R.menu.home_menu);
     }
 
-    private void setUpRecyclerView() {
-        FirebaseFirestore.getInstance()
-                .collection("Annonces")
-                .get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        List<DocumentSnapshot> dsList = queryDocumentSnapshots.getDocuments();
-                        for (DocumentSnapshot ds:dsList) {
-                            Annonce annonce = ds.toObject(Annonce.class);
-                            adapter.add(annonce);
-                        }
-                    }
-                });
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }

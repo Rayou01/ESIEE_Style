@@ -3,11 +3,11 @@ package com.example.esieestyle.connection_fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,15 +18,19 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.esieestyle.AnnonceActivity;
 import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentRegisterBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class RegisterFragment extends Fragment {
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
+    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    String userID;
     private FragmentRegisterBinding binding;
 
     private boolean is_Name_Text_Empty, is_Surname_Text_Empty, is_Email_Text_Empty, is_Phone_Text_Empty, is_Password_Text_Empty = true;
@@ -166,35 +170,38 @@ public class RegisterFragment extends Fragment {
             fragmentTransaction.commit();
         });
 
-        binding.validateRegistrationButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email, password;
-                email = String.valueOf(binding.mailEsiee.getText());
-                password = String.valueOf(binding.registerPassword.getText());
-
-                if(TextUtils.isEmpty(email)){
-                    //Toast.makeText(getContext(), "Entrer un mail", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(TextUtils.isEmpty(password)) {
-                    //Toast.makeText(getContext(), "Entrer un mot de passe", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                firebaseAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                //Toast.makeText(getContext(), "Compte créé", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(), AnnonceActivity.class);
-                                startActivity(intent);
-                            } else {
-                                //Toast.makeText(getContext(), "Echec de la création du compte", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
-            }
+        binding.validateRegistrationButton.setOnClickListener(view12 -> {
+            String email, password;
+            email = String.valueOf(binding.mailEsiee.getText());
+            password = String.valueOf(binding.registerPassword.getText());
+            firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        addUserFirestore();
+                    }
+                    else
+                        Toast.makeText(getContext(), "Echec de la création du compte", Toast.LENGTH_SHORT).show();
+                });
         });
+    }
+
+    private void addUserFirestore(){
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        if(firebaseUser != null){
+            userID = firebaseUser.getUid();
+
+            Map<String, Object> users = new HashMap<>();
+            users.put("userName", Objects.requireNonNull(binding.registerName.getText()).toString());
+            users.put("userSurname", Objects.requireNonNull(binding.registerSurname.getText()).toString());
+            users.put("userMail", Objects.requireNonNull(binding.mailEsiee.getText()).toString());
+            users.put("userPassword", Objects.requireNonNull(binding.registerPassword.getText()).toString());
+            users.put("userPhone", Objects.requireNonNull(binding.phoneNumber.getText()).toString());
+
+            firebaseFirestore.collection("Users")
+                    .document(userID)
+                    .set(users)
+                    .addOnSuccessListener(documentReference -> startActivity(new Intent(getActivity(), AnnonceActivity.class)))
+                    .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec d'enregistrement", Toast.LENGTH_SHORT).show());
+        }
     }
 }

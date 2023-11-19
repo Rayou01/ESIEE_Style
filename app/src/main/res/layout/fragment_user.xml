@@ -1,14 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".annonce_fragment.UserFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/photo_user_imageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/baseline_person"
+        android:contentDescription="@string/photo_objet" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/nom_prenom_user"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/photo_user_imageView"
+        android:layout_toStartOf="@+id/deconnecte_button"
+        android:text="@string/nom_prenom"
+        android:gravity="center"
+        android:textSize="50sp"
+        android:textColor="@color/black"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nom_prenom_user"
+        android:layout_alignBottom="@+id/photo_user_imageView"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/photo_user_imageView">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/informations_user_editText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/mes_informations"
+            android:textSize="20sp"
+            android:gravity="start|top"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_panier_user"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/recycler_view_annonces_user"
+        android:layout_below="@+id/photo_user_imageView"
+        android:layout_height="525dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_annonces_user"
+        android:layout_width="match_parent"
+        android:layout_height="525dp"
+        android:layout_alignParentBottom="true" />
+
+    <Button
+        android:id="@+id/deconnecte_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/baseline_power"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
