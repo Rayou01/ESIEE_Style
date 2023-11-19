@@ -15,12 +15,14 @@ import com.example.esieestyle.adapter.AnnonceAdapter;
 import com.example.esieestyle.databinding.FragmentHomeBinding;
 import com.example.esieestyle.model.Annonce;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 public class HomeFragment extends Fragment{
 
-    private FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FragmentHomeBinding binding;
     private AnnonceAdapter adapter;
 
@@ -40,18 +42,13 @@ public class HomeFragment extends Fragment{
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-
-
-        Query query = firebaseFirestore.collection("Annonces").orderBy("productName", Query.Direction.ASCENDING);
+        Query query = firebaseFirestore.collection("Annonces").orderBy("productPrice", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Annonce> options = new FirestoreRecyclerOptions.Builder<Annonce>()
                 .setQuery(query, Annonce.class)
                 .build();
-
         adapter = new AnnonceAdapter(options);
         binding.recylcerViewAnnonce.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.recylcerViewAnnonce.setAdapter(adapter);
-
 
         return binding.getRoot();
     }
