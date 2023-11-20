@@ -63,6 +63,7 @@ public class AnnonceActivity extends AppCompatActivity {
         }
         else
             displayDialogWindows();
+        bottomNavigationView.setVisibility(View.VISIBLE);
         bottomNavigationView.setSelectedItemId(R.id.home_menu);
     }
 
