@@ -13,11 +13,18 @@ import com.example.esieestyle.R;
 import com.example.esieestyle.model.Annonce;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AnnonceAdapter extends FirestoreRecyclerAdapter<Annonce, AnnonceAdapter.AnnonceViewHolder> {
 
+    FirebaseAuth firebaseAuth;
+    FirebaseFirestore firebaseFirestore;
+
     public AnnonceAdapter(@NonNull FirestoreRecyclerOptions<Annonce> options) {
         super(options);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseFirestore = FirebaseFirestore.getInstance();
     }
 
     @Override
@@ -54,6 +61,7 @@ public class AnnonceAdapter extends FirestoreRecyclerAdapter<Annonce, AnnonceAda
             textView_productState = itemView.findViewById(R.id.product_state_TextView);
             textView_productPrice = itemView.findViewById(R.id.product_price_TextView);
             textView_annonceDate = itemView.findViewById(R.id.annonce_date_TextView);
+
         }
     }
 }

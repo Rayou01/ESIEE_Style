@@ -13,7 +13,7 @@ public class Annonce {
     public  Annonce(){
 
     }
-    public Annonce(String productName, String sellerName, String productState, float productPrice, String annonceDate, Button favorite_button) {
+    public Annonce(String productName, String sellerName, String productState, float productPrice, String annonceDate, Button favorite_button, Boolean isFavorite) {
         this.productName = productName;
         this.SellerName = sellerName;
         this.productState = productState;
