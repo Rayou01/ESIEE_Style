@@ -67,15 +67,14 @@
 
             <Button
                 android:id="@+id/reset_password_button"
-                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/reset_password"
-                android:textColor="@color/blue_text_1"
-                android:textSize="17sp" />
+                android:textColor="@color/grey"
+                android:textSize="18sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

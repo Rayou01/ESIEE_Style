@@ -142,7 +142,7 @@ public class ConnectionFragment extends Fragment {
                             startActivity(intent);
                         }
                         else {
-                            Toast.makeText(getContext(), "Echec de connexion", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Email ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
                         }
                     }
             });

@@ -1,7 +1,6 @@
 package com.example.esieestyle.connection_fragment;
 
 import android.os.Bundle;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -18,6 +17,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentForgotBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -82,6 +83,42 @@ public class ForgotFragment extends Fragment {
             ConnectionFragment connectionFragment = new ConnectionFragment();
             fragmentTransaction.replace(R.id.fragment_container_view_id_Main, connectionFragment);
             fragmentTransaction.commit();
+        });
+
+        binding.resetPasswordButton.setOnClickListener(view2 -> {
+            String email = binding.userEmailReset.getText().toString().trim();
+
+            if(TextUtils.isEmpty(email)) {
+                return;
+            }
+
+            // Vérifier si l'adresse e-mail existe dans Firebase
+            firebaseAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    // Liste des méthodes de connexion associées à l'adresse e-mail
+                    if (task.getResult().getSignInMethods().size() > 0) {
+                        // L'adresse e-mail existe, envoyer la réinitialisation du mot de passe
+                        String email1 = String.valueOf(binding.userEmailReset.getText());
+                        firebaseAuth.sendPasswordResetEmail(email1).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task1) {
+                                if (task1.isSuccessful()) {
+                                    Toast.makeText(getContext(), "Le mot de passe a été envoyé par e-mail", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getContext(), "Erreur lors de l'envoi du mot de passe par e-mail", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    } else {
+                        // Aucune méthode de connexion associée à l'adresse e-mail, afficher un message d'erreur
+                        Toast.makeText(getContext(), "Aucun compte associé à cette adresse e-mail", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // Une erreur s'est produite lors de la vérification de l'adresse e-mail
+                    Toast.makeText(getContext(), "Erreur lors de la vérification de l'adresse e-mail", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         });
     }
 }
