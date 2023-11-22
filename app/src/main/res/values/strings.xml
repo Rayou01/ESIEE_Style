@@ -29,6 +29,7 @@
     <string name="etat_objet">Etat de l\'objet</string>
     <string name="enter_email">Entrer votre email</string>
     <string name="reset_password">Réinitialiser le mot de passe</string>
+    <string name="acheter">Acheter</string>
 
     <string name="vos_informations">Vos informations</string>
     <string name="mes_informations">Mes Informations</string>
