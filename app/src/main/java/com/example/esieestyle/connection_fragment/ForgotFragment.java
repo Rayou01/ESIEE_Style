@@ -17,20 +17,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentForgotBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.esieestyle.utils.FirestoreUtils;
+
+import java.util.Objects;
 
 public class ForgotFragment extends Fragment {
 
     private boolean is_User_Text_Empty = true;
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FragmentForgotBinding binding;
 
     public static ForgotFragment newInstance() {
-        ForgotFragment fragment = new ForgotFragment();
-        return fragment;
+        return new ForgotFragment();
     }
 
     @Override
@@ -51,7 +48,7 @@ public class ForgotFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //When the UI is created, we disable the connection button until the user enter something
         binding.resetPasswordButton.setEnabled(false);
-        firebaseAuth.signOut();
+       FirestoreUtils.signOut();
         //Toast.makeText(getContext(), "Veuillez vous connecter", Toast.LENGTH_LONG).show();
 
         is_User_Text_Empty = true;
@@ -86,27 +83,24 @@ public class ForgotFragment extends Fragment {
         });
 
         binding.resetPasswordButton.setOnClickListener(view2 -> {
-            String email = binding.userEmailReset.getText().toString().trim();
+            String email = Objects.requireNonNull(binding.userEmailReset.getText()).toString().trim();
 
             if(TextUtils.isEmpty(email)) {
                 return;
             }
 
             // Vérifier si l'adresse e-mail existe dans Firebase
-            firebaseAuth.fetchSignInMethodsForEmail(email).addOnCompleteListener(task -> {
+            FirestoreUtils.getFirebaseAuth().fetchSignInMethodsForEmail(email).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     // Liste des méthodes de connexion associées à l'adresse e-mail
-                    if (task.getResult().getSignInMethods().size() > 0) {
+                    if (Objects.requireNonNull(task.getResult().getSignInMethods()).size() > 0) {
                         // L'adresse e-mail existe, envoyer la réinitialisation du mot de passe
                         String email1 = String.valueOf(binding.userEmailReset.getText());
-                        firebaseAuth.sendPasswordResetEmail(email1).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task1) {
-                                if (task1.isSuccessful()) {
-                                    Toast.makeText(getContext(), "Le mot de passe a été envoyé par e-mail", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    Toast.makeText(getContext(), "Erreur lors de l'envoi du mot de passe par e-mail", Toast.LENGTH_SHORT).show();
-                                }
+                        FirestoreUtils.getFirebaseAuth().sendPasswordResetEmail(email1).addOnCompleteListener(task1 -> {
+                            if (task1.isSuccessful()) {
+                                Toast.makeText(getContext(), "Le mot de passe a été envoyé par e-mail", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getContext(), "Erreur lors de l'envoi du mot de passe par e-mail", Toast.LENGTH_SHORT).show();
                             }
                         });
                     } else {

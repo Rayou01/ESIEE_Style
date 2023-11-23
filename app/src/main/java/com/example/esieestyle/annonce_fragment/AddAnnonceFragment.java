@@ -16,10 +16,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentAddAnnonceBinding;
+import com.example.esieestyle.utils.FirestoreUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -30,9 +28,6 @@ import java.util.Objects;
 public class AddAnnonceFragment extends Fragment {
 
     private FragmentAddAnnonceBinding binding;
-    FirebaseFirestore firebaseFirestore;
-    FirebaseAuth firebaseAuth;
-    String userID;
     Map<String, Object> newAnnonce;
 
     public AddAnnonceFragment() {
@@ -51,9 +46,6 @@ public class AddAnnonceFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        firebaseAuth = FirebaseAuth.getInstance();
-
         // Inflate the layout for this fragment
         binding = FragmentAddAnnonceBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -62,7 +54,6 @@ public class AddAnnonceFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        firebaseFirestore = FirebaseFirestore.getInstance();
 
         //Initialise le spinner pour les catégories
         ArrayAdapter<CharSequence> spinnerCategoriesAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.categories, android.R.layout.simple_spinner_item);
@@ -111,7 +102,7 @@ public class AddAnnonceFragment extends Fragment {
             //newAnnonce.put("annonceDescription",descriptionAnnonce);
 
             //Enfin, on poste l'annonce sur Firestore
-            firebaseFirestore.collection("Annonces")
+            FirestoreUtils.getCollectionRef("Annonces")
                     .add(newAnnonce)
                     .addOnSuccessListener(documentReference -> addUserAnnonceFirestore())
                     .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec de publication", Toast.LENGTH_SHORT).show());
@@ -142,15 +133,9 @@ public class AddAnnonceFragment extends Fragment {
     }
 
     private void addUserAnnonceFirestore(){
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if(firebaseUser != null){
-            userID = firebaseUser.getUid();
-
-            firebaseFirestore.collection("Users").document(userID).collection("Annonces ajoutées")
-                    .add(newAnnonce)
-                    .addOnSuccessListener(documentReference -> goOnHomeFragment())
-                    .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec d'enregistrement", Toast.LENGTH_SHORT).show());
-        }
+        FirestoreUtils.getAjoutUserCollectionRef()
+                .add(newAnnonce)
+                .addOnSuccessListener(documentReference -> goOnHomeFragment())
+                .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec d'enregistrement", Toast.LENGTH_SHORT).show());
     }
 }

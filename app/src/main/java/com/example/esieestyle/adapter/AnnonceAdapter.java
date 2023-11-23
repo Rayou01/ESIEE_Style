@@ -10,21 +10,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.esieestyle.R;
+import com.example.esieestyle.RecyclerViewInterface;
 import com.example.esieestyle.model.Annonce;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AnnonceAdapter extends FirestoreRecyclerAdapter<Annonce, AnnonceAdapter.AnnonceViewHolder> {
 
-    FirebaseAuth firebaseAuth;
-    FirebaseFirestore firebaseFirestore;
+    private final RecyclerViewInterface recyclerViewInterface;
 
-    public AnnonceAdapter(@NonNull FirestoreRecyclerOptions<Annonce> options) {
+    public AnnonceAdapter(@NonNull FirestoreRecyclerOptions<Annonce> options, RecyclerViewInterface recyclerViewInterface) {
         super(options);
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseFirestore = FirebaseFirestore.getInstance();
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @Override
@@ -42,7 +39,7 @@ public class AnnonceAdapter extends FirestoreRecyclerAdapter<Annonce, AnnonceAda
     @Override
     public AnnonceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.annonce_view, parent, false);
-        return new AnnonceViewHolder(v);
+        return new AnnonceViewHolder(v, recyclerViewInterface);
     }
 
     public static class AnnonceViewHolder extends RecyclerView.ViewHolder{
@@ -54,14 +51,24 @@ public class AnnonceAdapter extends FirestoreRecyclerAdapter<Annonce, AnnonceAda
         public TextView textView_annonceDate;
         public Button favorite_button;
 
-        public AnnonceViewHolder(@NonNull View itemView) {
+        public AnnonceViewHolder(@NonNull View itemView, RecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             textView_productName = itemView.findViewById(R.id.product_name_TextView);
             textView_sellerName = itemView.findViewById(R.id.seller_name_TextView);
             textView_productState = itemView.findViewById(R.id.product_state_TextView);
             textView_productPrice = itemView.findViewById(R.id.product_price_TextView);
             textView_annonceDate = itemView.findViewById(R.id.annonce_date_TextView);
+            favorite_button = itemView.findViewById(R.id.favorite_button);
 
+            itemView.setOnClickListener(view -> {
+                if(recyclerViewInterface != null){
+                    int position = getAbsoluteAdapterPosition();
+
+                    if(position != RecyclerView.NO_POSITION){
+                        recyclerViewInterface.OnItemClick(position);
+                    }
+                }
+            });
         }
     }
 }

@@ -19,9 +19,6 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.esieestyle.AnnonceActivity;
 import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentConnectionBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ConnectionFragment extends Fragment {
@@ -32,8 +29,7 @@ public class ConnectionFragment extends Fragment {
     private boolean is_User_Text_Empty, is_Password_Text_Empty;
 
     public static ConnectionFragment newInstance() {
-        ConnectionFragment fragment = new ConnectionFragment();
-        return fragment;
+        return new ConnectionFragment();
     }
 
     @Override
@@ -134,18 +130,15 @@ public class ConnectionFragment extends Fragment {
             }
 
             firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
-                            Intent intent = new Intent(getActivity(), AnnonceActivity.class);
-                            startActivity(intent);
-                        }
-                        else {
-                            Toast.makeText(getContext(), "Email ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
-                        }
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()) {
+                        Intent intent = new Intent(getActivity(), AnnonceActivity.class);
+                        startActivity(intent);
                     }
-            });
+                    else {
+                        Toast.makeText(getContext(), "Email ou mot de passe incorrect", Toast.LENGTH_SHORT).show();
+                    }
+                });
         });
     }
 }

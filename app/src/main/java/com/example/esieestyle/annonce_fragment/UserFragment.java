@@ -13,19 +13,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.esieestyle.ConnectionActivity;
+import com.example.esieestyle.R;
+import com.example.esieestyle.RecyclerViewInterface;
 import com.example.esieestyle.adapter.AnnonceAdapter;
 import com.example.esieestyle.databinding.FragmentUserBinding;
 import com.example.esieestyle.model.Annonce;
+import com.example.esieestyle.utils.FirestoreUtils;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class UserFragment extends Fragment {
+import java.util.Objects;
 
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+public class UserFragment extends Fragment implements RecyclerViewInterface {
+
     private FragmentUserBinding binding;
     private AnnonceAdapter adapter;
     String userID;
@@ -49,22 +49,17 @@ public class UserFragment extends Fragment {
         // Inflate the layout for this fragment
         binding = FragmentUserBinding.inflate(inflater, container, false);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if(firebaseUser != null){
-            userID = firebaseUser.getUid();
-            Query query = firebaseFirestore.collection("Users")
-                    .document(userID)
-                    .collection("Annonces ajoutées")
-                    .orderBy("productPrice", Query.Direction.ASCENDING);
-            FirestoreRecyclerOptions<Annonce> options = new FirestoreRecyclerOptions.Builder<Annonce>()
-                    .setQuery(query, Annonce.class)
-                    .build();
+        userID = FirestoreUtils.getUserID();
+        Query query = FirestoreUtils.getAjoutUserCollectionRef()
+                .orderBy("productPrice", Query.Direction.ASCENDING);
+        FirestoreRecyclerOptions<Annonce> options = new FirestoreRecyclerOptions.Builder<Annonce>()
+                .setQuery(query, Annonce.class)
+                .build();
 
-            adapter = new AnnonceAdapter(options);
-            binding.recyclerViewAnnoncesUser.setLayoutManager(new LinearLayoutManager(getActivity()));
-            binding.recyclerViewAnnoncesUser.setAdapter(adapter);
-        }
+        adapter = new AnnonceAdapter(options, this);
+        binding.recyclerViewAnnoncesUser.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.recyclerViewAnnoncesUser.setAdapter(adapter);
+
         return binding.getRoot();
     }
 
@@ -73,6 +68,13 @@ public class UserFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.deconnecteButton.setOnClickListener(view1 -> displayDeconnectionDialogWindows());
+
+        FirestoreUtils.getCollectionRef("Users").document(Objects.requireNonNull(FirestoreUtils.getUserID())).get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    String userName = documentSnapshot.getString("userName") + " " + documentSnapshot.getString("userSurname");
+                    binding.nomPrenomUser.setText(userName);
+                })
+                .addOnFailureListener(e -> binding.nomPrenomUser.setText(R.string.nom_prenom));
     }
 
     private void displayDeconnectionDialogWindows() {
@@ -81,7 +83,7 @@ public class UserFragment extends Fragment {
         builder.setTitle("Vous allez vous déconnecter");
         builder.setMessage("Voulez-vous vraiment vous déconnecter ?");
         builder.setPositiveButton("Déconnecter", (dialog, id) -> {
-            firebaseAuth.signOut();
+            FirestoreUtils.signOut();
             Intent intent = new Intent(getActivity(), ConnectionActivity.class);
             startActivity(intent);
         });
@@ -100,4 +102,7 @@ public class UserFragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
+
+    @Override
+    public void OnItemClick(int position) {}
 }

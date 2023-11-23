@@ -18,9 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.esieestyle.AnnonceActivity;
 import com.example.esieestyle.R;
 import com.example.esieestyle.databinding.FragmentRegisterBinding;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.example.esieestyle.utils.FirestoreUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,8 +26,6 @@ import java.util.Objects;
 
 public class RegisterFragment extends Fragment {
 
-    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     String userID;
     private FragmentRegisterBinding binding;
 
@@ -57,7 +53,7 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.validateRegistrationButton.setEnabled(false);
-        firebaseAuth.signOut();
+        FirestoreUtils.signOut();
 
         is_Name_Text_Empty = true;
         is_Surname_Text_Empty = true;
@@ -174,7 +170,7 @@ public class RegisterFragment extends Fragment {
             String email, password;
             email = String.valueOf(binding.mailEsiee.getText());
             password = String.valueOf(binding.registerPassword.getText());
-            firebaseAuth.createUserWithEmailAndPassword(email, password)
+            FirestoreUtils.getFirebaseAuth().createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         addUserFirestore();
@@ -186,22 +182,21 @@ public class RegisterFragment extends Fragment {
     }
 
     private void addUserFirestore(){
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if(firebaseUser != null){
-            userID = firebaseUser.getUid();
 
-            Map<String, Object> users = new HashMap<>();
-            users.put("userName", Objects.requireNonNull(binding.registerName.getText()).toString());
-            users.put("userSurname", Objects.requireNonNull(binding.registerSurname.getText()).toString());
-            users.put("userMail", Objects.requireNonNull(binding.mailEsiee.getText()).toString());
-            users.put("userPassword", Objects.requireNonNull(binding.registerPassword.getText()).toString());
-            users.put("userPhone", Objects.requireNonNull(binding.phoneNumber.getText()).toString());
+        userID = FirestoreUtils.getUserID();
 
-            firebaseFirestore.collection("Users")
-                    .document(userID)
-                    .set(users)
-                    .addOnSuccessListener(documentReference -> startActivity(new Intent(getActivity(), AnnonceActivity.class)))
-                    .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec d'enregistrement", Toast.LENGTH_SHORT).show());
-        }
+        Map<String, Object> users = new HashMap<>();
+        users.put("userName", Objects.requireNonNull(binding.registerName.getText()).toString());
+        users.put("userSurname", Objects.requireNonNull(binding.registerSurname.getText()).toString());
+        users.put("userMail", Objects.requireNonNull(binding.mailEsiee.getText()).toString());
+        users.put("userPassword", Objects.requireNonNull(binding.registerPassword.getText()).toString());
+        users.put("userPhone", Objects.requireNonNull(binding.phoneNumber.getText()).toString());
+
+        FirestoreUtils.getCollectionRef("Users")
+                .document(userID)
+                .set(users)
+                .addOnSuccessListener(documentReference -> startActivity(new Intent(getActivity(), AnnonceActivity.class)))
+                .addOnFailureListener(e -> Toast.makeText(requireContext(), "Echec d'enregistrement", Toast.LENGTH_SHORT).show());
+
     }
 }

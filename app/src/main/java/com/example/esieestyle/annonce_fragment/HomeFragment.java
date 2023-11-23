@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,18 +12,16 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.esieestyle.R;
+import com.example.esieestyle.RecyclerViewInterface;
 import com.example.esieestyle.adapter.AnnonceAdapter;
 import com.example.esieestyle.databinding.FragmentHomeBinding;
 import com.example.esieestyle.model.Annonce;
+import com.example.esieestyle.utils.FirestoreUtils;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
-public class HomeFragment extends Fragment{
+public class HomeFragment extends Fragment implements RecyclerViewInterface {
 
-    private final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private FragmentHomeBinding binding;
     private AnnonceAdapter adapter;
 
@@ -32,7 +31,6 @@ public class HomeFragment extends Fragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
     }
 
@@ -42,11 +40,11 @@ public class HomeFragment extends Fragment{
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        Query query = firebaseFirestore.collection("Annonces").orderBy("productPrice", Query.Direction.ASCENDING);
+        Query query = FirestoreUtils.getCollectionRef("Annonces").orderBy("productPrice", Query.Direction.ASCENDING);
         FirestoreRecyclerOptions<Annonce> options = new FirestoreRecyclerOptions.Builder<Annonce>()
                 .setQuery(query, Annonce.class)
                 .build();
-        adapter = new AnnonceAdapter(options);
+        adapter = new AnnonceAdapter(options, this);
         binding.recylcerViewAnnonce.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.recylcerViewAnnonce.setAdapter(adapter);
 
@@ -73,5 +71,10 @@ public class HomeFragment extends Fragment{
     public void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public void OnItemClick(int position) {
+        Toast.makeText(getContext(), "Item clicked", Toast.LENGTH_SHORT).show();
     }
 }

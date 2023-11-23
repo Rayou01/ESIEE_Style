@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/photo_user_imageView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/baseline_person"
@@ -21,7 +21,6 @@
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/photo_user_imageView"
         android:layout_toStartOf="@+id/deconnecte_button"
-        android:text="@string/nom_prenom"
         android:gravity="center"
         android:textSize="50sp"
         android:textColor="@color/black"/>
@@ -58,7 +57,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view_annonces_user"
         android:layout_width="match_parent"
-        android:layout_height="525dp"
+        android:layout_height="450dp"
         android:layout_alignParentBottom="true" />
 
     <Button
