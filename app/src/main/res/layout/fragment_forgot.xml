@@ -17,10 +17,11 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="match_parent"
+        android:layout_width="700dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/imageView"
         android:layout_marginTop="16dp"
+        android:layout_centerInParent="true"
         android:backgroundTint="@color/blue_background"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
@@ -35,22 +36,24 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/forgot_password"
                 android:textAlignment="center"
                 android:textColor="@color/blue_text_1"
-                android:textSize="24sp"
+                android:textSize="60sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="30dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_email_reset"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="480dp"
+                    android:layout_height="60dp"
                     android:autofillHints="email"
                     android:background="@drawable/edit_round"
                     android:hint="@string/enter_email"
@@ -61,34 +64,34 @@
                     android:paddingTop="2dp"
                     android:paddingBottom="2dp"
                     android:textColor="@color/blue_text_2"
-                    android:textSize="18sp" />
+                    android:textSize="35sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/reset_password_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="30dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="@string/reset_password"
                 android:textColor="@color/grey"
-                android:textSize="18sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/forgot_to_connection_page_button"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
         android:minHeight="50dp"
         android:layout_below="@id/cardView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:background="@drawable/edit_round_button"
-        android:textSize="18sp"
+        android:textSize="30sp"
         android:textColor="@color/grey"
         android:text="@string/retour"
         tools:ignore="VisualLintBounds" />
