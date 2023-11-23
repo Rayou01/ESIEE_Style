@@ -20,6 +20,7 @@ import com.example.esieestyle.databinding.FragmentUserBinding;
 import com.example.esieestyle.model.Annonce;
 import com.example.esieestyle.utils.FirestoreUtils;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
 import java.util.Objects;
@@ -104,5 +105,5 @@ public class UserFragment extends Fragment implements RecyclerViewInterface {
     }
 
     @Override
-    public void OnItemClick(int position) {}
+    public void OnItemClick(DocumentSnapshot documentSnapshot, int position) {}
 }

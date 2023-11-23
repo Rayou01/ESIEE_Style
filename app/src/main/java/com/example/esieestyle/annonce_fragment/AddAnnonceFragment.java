@@ -75,14 +75,13 @@ public class AddAnnonceFragment extends Fragment {
             String titleAnnonce = Objects.requireNonNull(binding.titleAnnonceEditText.getEditText()).getText().toString();
             String stateAnnonce = binding.etatObjetSpinner.getSelectedItem().toString();
             String priceAnnonce = Objects.requireNonNull(binding.prixObjetInputText.getEditText()).getText().toString();
-            //String infosAnnonce = binding.informationsContactTextView2.getText().toString();
-            //String descriptionAnnonce = binding.descriptionAnnonceInputText.getEditText().getText().toString();
 
             //On vérifie si elles sont vides
             if (titleAnnonce.equals("") || priceAnnonce.equals("")){
                 displayDialogWindows();
                 return;
             }
+
             //On récupère la date du jour (sans l'heure) que l'on envoie sous forme de string
             Calendar calendar = Calendar.getInstance();
             String dateAnnonce = DateFormat.getDateInstance().format(calendar.getTime());
@@ -98,8 +97,6 @@ public class AddAnnonceFragment extends Fragment {
             newAnnonce.put("productPrice", priceProduct);
             newAnnonce.put("annonceDate", dateAnnonce);
             newAnnonce.put("productState", stateAnnonce);
-            //newAnnonce.put("annonceInfos",infosAnnonce);
-            //newAnnonce.put("annonceDescription",descriptionAnnonce);
 
             //Enfin, on poste l'annonce sur Firestore
             FirestoreUtils.getCollectionRef("Annonces")
@@ -114,9 +111,7 @@ public class AddAnnonceFragment extends Fragment {
 
         builder.setTitle("Publication impossible");
         builder.setMessage("Veuillez remplir toutes les informations");
-        builder.setPositiveButton("Compris", (dialog, id) -> {
-
-        });
+        builder.setPositiveButton("Compris", (dialog, id) -> {});
         AlertDialog dialog = builder.create();
         dialog.show();
     }

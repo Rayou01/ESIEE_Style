@@ -4,11 +4,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.esieestyle.R;
@@ -18,6 +19,7 @@ import com.example.esieestyle.databinding.FragmentHomeBinding;
 import com.example.esieestyle.model.Annonce;
 import com.example.esieestyle.utils.FirestoreUtils;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
 
 public class HomeFragment extends Fragment implements RecyclerViewInterface {
@@ -74,7 +76,37 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
     }
 
     @Override
-    public void OnItemClick(int position) {
-        Toast.makeText(getContext(), "Item clicked", Toast.LENGTH_SHORT).show();
+    public void OnItemClick(DocumentSnapshot documentSnapshot, int position) {
+        String sellerName = documentSnapshot.getString("sellerName");
+        String productName = documentSnapshot.getString("productName");
+
+        Annonce annonce = new Annonce(productName, sellerName, "", 0, "");
+        Bundle bundle = annonce.toBundle();
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SelectionFragment selectionFragment = new SelectionFragment();
+        selectionFragment.setArguments(bundle);
+        fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, selectionFragment);
+        fragmentTransaction.commit();
     }
+
+    /*@Override
+    public void OnItemClick(int position) {
+        String productName = "";
+        int productPrice = 0;
+        String productState = "";
+        String annonceDate = "";
+        String sellerName = "";
+        Annonce annonce = new Annonce(productName, sellerName, productState, productPrice, annonceDate);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("annonce", annonce);
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SelectionFragment selectionFragment = new SelectionFragment();
+        selectionFragment.setArguments(bundle);
+        fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, selectionFragment);
+        fragmentTransaction.commit();
+    }
+     */
 }

@@ -9,7 +9,7 @@
         android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Nom de l'article"
+        android:text="@string/nom_de_l_article"
         android:textAlignment="center"
         android:textSize="60sp"
         android:textStyle="bold"/>
@@ -51,13 +51,7 @@
             android:id="@+id/sellerName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nom" />
-
-        <TextView
-            android:id="@+id/sellerFristName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prénom" />
+            android:text="@string/nom_prenom" />
 
         <TextView
             android:id="@+id/sellerEmail"
@@ -95,7 +89,7 @@
         android:minHeight="200dp"
         android:paddingStart="10dp"
         android:paddingTop="10dp"
-        android:text="Informations"
+        android:text="@string/informations"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
