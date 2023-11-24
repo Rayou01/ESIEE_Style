@@ -2,11 +2,15 @@ package com.example.esieestyle.annonce_fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -90,23 +94,4 @@ public class HomeFragment extends Fragment implements RecyclerViewInterface {
         fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, selectionFragment);
         fragmentTransaction.commit();
     }
-
-    /*@Override
-    public void OnItemClick(int position) {
-        String productName = "";
-        int productPrice = 0;
-        String productState = "";
-        String annonceDate = "";
-        String sellerName = "";
-        Annonce annonce = new Annonce(productName, sellerName, productState, productPrice, annonceDate);
-        Bundle bundle = new Bundle();
-        bundle.putParcelable("annonce", annonce);
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        SelectionFragment selectionFragment = new SelectionFragment();
-        selectionFragment.setArguments(bundle);
-        fragmentTransaction.replace(R.id.fragment_container_view_id_Annonce, selectionFragment);
-        fragmentTransaction.commit();
-    }
-     */
 }
