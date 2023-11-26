@@ -41,8 +41,8 @@ public class ForgotFragment extends Fragment {
 
         binding = FragmentForgotBinding.inflate(inflater, container, false);
         return binding.getRoot();
-
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
