@@ -34,6 +34,8 @@
     <string name="vos_informations">Vos informations</string>
     <string name="mes_informations">Mes Informations</string>
     <string name="nom_prenom">Nom Prenom</string>
+    <string name="nom_de_l_article">Nom de l\'article</string>
+    <string name="informations">Information sur l\'article</string>
 
     <string-array name="categories">
         <item>Vetements</item>

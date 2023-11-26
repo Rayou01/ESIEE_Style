@@ -76,7 +76,12 @@ public class UserFragment extends Fragment implements RecyclerViewInterface {
                     binding.nomPrenomUser.setText(userName);
                 })
                 .addOnFailureListener(e -> binding.nomPrenomUser.setText(R.string.nom_prenom));
+
+        binding.includeTopBarUser.topToolbar.getMenu().clear();
+        binding.includeTopBarUser.topToolbar.setTitle("Mon Compte");
+        binding.includeTopBarUser.topToolbar.setLogo(R.drawable.baseline_person);
     }
+
 
     private void displayDeconnectionDialogWindows() {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());

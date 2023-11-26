@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:minHeight="?attr/actionBarSize"
-        app:title="Total : 45 €"
+        app:title="Total : 0 €"
         android:background="@color/blue_text_1"
         app:titleTextColor="@color/black"
         android:layout_alignParentBottom="true"/>
